@@ -1,0 +1,65 @@
+<div content="row-fluid" id="box-create-video">
+
+    <div class="col-sm-8">
+        <div class="widget border-radius-0 shadow-div">
+            <h4>Thông tin video</h4>
+            <div class="control-group">
+                <label>Tiêu đề</label>
+                <input name="video_title" type="text" id="must">
+            </div>
+            <div class="control-group" id="description_video">
+                <label>Mô tả ngắn</label>
+                <textarea name="video_description" class="video_description"></textarea>
+            </div>
+            <div class="control-group" id="video_publish">
+                <label>Ngày xuất bản</label>
+                <input name="video_publish" type="text">
+            </div>
+        </div>
+
+        <div class="widget border-radius-0 shadow-div">
+            <h4>Thông tin SEO</h4>
+            <div class="control-group">
+                <label>Tiêu đề SEO</label>
+                <input name="video_seo_title" type="text">
+            </div>
+            <div class="control-group">
+                <label>Từ khóa SEO</label>
+                <input name="video_seo_key_word" type="text">
+            </div>
+            <div class="control-group">
+                <label>Mô tả SEO</label>
+                <textarea name="video_seo_description" class="video_seo_description"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-4">
+        <div class="widget border-radius-0 shadow-div">
+            <h4>Video</h4>
+            <div class="control-group">
+                <label>Chuyên mục chính</label>
+                <input name="video_category" type="text">
+            </div>
+            <div class="control-group">
+                <label>Chuyên mục phụ</label>
+                <input name="video_sub_category" type="text">
+            </div>
+        </div>
+
+        <div class="widget border-radius-0 shadow-div">
+            <h4>Chuyên mục</h4>
+            <div class="control-group">
+                <label>Chuyên mục chính</label>
+                <select2 [data]="CategoryData" [cssImport]=true [width]="200"></select2>
+            </div>
+            <div class="control-group">
+                <label>Chuyên mục phụ</label>
+                <input name="video_sub_category" type="text">
+            </div>
+        </div>
+
+    </div>
+
+</div>

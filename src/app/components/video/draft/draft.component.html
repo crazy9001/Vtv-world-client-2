@@ -1,0 +1,121 @@
+<div class="tablename">
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="qsFilter pull-left">
+                <div class="btn-group input-prepend">
+                    <div class="form-filter-inline">
+                        <button type="button" id="appendedInputButtons" class="btn">Filter</button>
+                        <form name="other_filter" action="videos.php" class="form-inline">
+                            <select name="URL"
+                                    onchange="window.parent.location=this.form.URL.options[this.form.URL.selectedIndex].value">
+                                <option value="videos.php">by videos ...</option>
+                            </select>
+                        </form>
+                        <form name="source_filter" action="videos.php" method="get" class="form-inline">
+                            <input type="hidden" name="filter" value="source">
+                            <select name="fv" onchange="submit()">
+                                <option value="">by video source...</option>
+                                <option value="70">123video.nl</option>
+                                <option value="47">5min</option>
+                            </select>
+                        </form>
+                        <form name="category_filter" action="videos.php" method="get" class="form-inline">
+                            <input type="hidden" name="filter" value="category">
+                            <select name="fv" id="select_move_to_category" class="inline last-filter"
+                                    onchange="submit()">
+                                <option value="" selected="selected">by category..</option>
+                            </select>
+                        </form>
+                    </div><!-- .form-filter-inline -->
+                </div><!-- .btn-group -->
+            </div><!-- .qsFilter -->
+
+        </div>
+        <div class="span4">
+            <div class="pull-right">
+                <form name="search" action="videos.php" method="post" class="form-search-listing form-inline">
+                    <div class="input-append">
+                        <input name="keywords" type="text" value="" size="30"
+                               class="search-query search-quez input-medium placeholder" placeholder="Enter keyword"
+                               id="form-search-input">
+                        <button type="submit" name="submit" class="btn" value="Search" id="submitFind">
+                            <i class="icon-search findIcon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-sm-12 portlet"> <!-- scrollable inbox widget -->
+        <section class="panel list-video-item">
+            <section class="panel-body m-b">
+                <article class="media">
+                        <span class="pull-left video-thumbnails">
+                            <img src="assets/images/0612tai-chinh-trua-15440768873251088758106-042b7_thumb6.jpg"
+                                 alt="John said">
+                        </span>
+                    <div class="media-body">
+                        <div class="pull-right media-mini text-center text-muted">
+                            <small class="category-video">Xã hội</small>
+                        </div>
+                        <h4 href="#" class="title-video">
+                            Liên tiếp xảy ra nhiều vụ cướp nhằm vào xe ôm công nghệ
+                        </h4>
+                        <small class="block m-b-5">
+                            <span class="">Ngày tạo</span>
+                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
+                        </small>
+                        <small class="block m-b-5">
+                            <span class="">Ngày xuất bản</span>
+                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
+                        </small>
+                        <small class="block m-b-5">
+                            <span class="">Người tạo</span>
+                            <span class=""> toinn</span>
+                        </small>
+                        <small class="block m-b-5">
+                            <span class="">Lượt xem</span>
+                            <span class=""> 0</span>
+                        </small>
+                    </div>
+                </article>
+                <div class="line pull-in"></div>
+                <article class="media">
+                        <span class="pull-left video-thumbnails">
+                            <img src="assets/images/0612tai-chinh-trua-15440768873251088758106-042b7_thumb6.jpg"
+                                 alt="John said">
+                        </span>
+                    <div class="media-body">
+                        <div class="pull-right media-mini text-center text-muted">
+                            <small class="category-video">Xã hội</small>
+                        </div>
+                        <h4 href="#" class="title-video">
+                            Liên tiếp xảy ra nhiều vụ cướp nhằm vào xe ôm công nghệ
+                        </h4>
+                        <small class="block m-b-5">
+                            <span class="">Ngày tạo</span>
+                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
+                        </small>
+                        <small class="block m-b-5">
+                            <span class="">Ngày xuất bản</span>
+                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
+                        </small>
+                        <small class="block m-b-5">
+                            <span class="">Người tạo</span>
+                            <span class=""> toinn</span>
+                        </small>
+                        <small class="block m-b-5">
+                            <span class="">Lượt xem</span>
+                            <span class=""> 0</span>
+                        </small>
+                    </div>
+                </article>
+                <div class="line pull-in"></div>
+            </section>
+        </section> <!-- / scrollable inbox widget-->
+    </div>
+</div>

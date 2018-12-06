@@ -1,0 +1,30 @@
+<div class="main padder">
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 m-t-large">
+            <section class="panel">
+                <header class="panel-heading text-center"> Sign in</header>
+                <form [formGroup]="f" class="panel-body">
+                    <div class="block">
+                        <input class="form-control" type="text"
+                               formControlName="username" required=""
+                               placeholder="Tên đăng nhập">
+                    </div>
+                    <div class="block">
+                        <input type="password"
+                               formControlName="password"
+                               class="form-control"
+                               placeholder="Mật khẩu">
+                    </div>
+                    <div class="checkbox"><label> <input type="checkbox"> Ghi nhớ đăng nhập </label></div>
+                    <a href="#" class="pull-right m-t-mini">
+                        <small>Quên mật khẩu?</small>
+                    </a>
+                    <button class="btn btn-info"
+                            [disabled]="f.invalid" (click)="onSubmit()"
+                            type="submit">Đăng nhập
+                    </button>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>

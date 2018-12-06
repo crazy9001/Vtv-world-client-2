@@ -1,0 +1,40 @@
+<nav id="nav" class="nav-primary hidden-xs nav-vertical">
+    <ul class="nav" data-spy="affix" data-offset-top="50">
+        <li class="active">
+            <a [routerLink]="['/DefaultV1']" routerLinkActive="active" >
+                <i class="fa fa-dashboard fa-lg"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#">
+                <i class="fa fa-video-camera"></i>
+                <span>Video</span>
+            </a>
+            <ul class="dropdown-menu pm-sub-menu-side">
+                <li>
+                    <a [routerLink]="['Video/Draft']" routerLinkActive="active">Lưu tạm</a>
+                </li>
+                <li>
+                    <a href="icons.html">
+                        <b class="badge pull-right">302</b>Chờ xuất bản
+                    </a>
+                </li>
+                <li>
+                    <a href="grid.html">
+                        Đã xuất bản
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a href="#">
+                <i class="fa fa-th fa-lg"></i><span>Manager</span>
+            </a>
+            <ul class="dropdown-menu pm-sub-menu-side">
+                <li><a href="list.html">Users</a></li>
+                <li><a href="table.html">Chuyên mục</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
