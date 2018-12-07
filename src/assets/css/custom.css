@@ -378,17 +378,68 @@ textarea.video_seo_description {
     outline: none;
     resize: none;
 }
-#box-create-video label {
-    width: 100px;
-}
-#box-create-video input{
-    width: 90%;
-    margin-left: 10px;
-}
-#box-create-video textarea {
-    margin-left: 10px;
-    width: 90%;
+#box-create-video input, #box-create-video textarea{
+    width: 100%;
+    outline: none !important;
+    border: solid 1px #ddd;
+    border-radius: 0px !important;
 }
 #box-create-video .control-group {
     margin-top: 15px;
+}
+.control-group .select2-container  {
+    width: 100% !important;
+}
+.control-group.select2-container--default, .control-group .select2-selection--single {
+    border-radius: 0px !important;
+    border: solid 1px #ddd !important;
+    outline: none !important;
+}
+.VideoUploadLoadWrapper{
+    width: 100%;
+    min-height: 120px;
+    border: solid 1px #ddd;
+    padding: 2px;
+    background: #eee;
+}
+.VideoUploadInputWrapper{
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 100%;
+}
+.ims-video-upload-control-wrapper {
+    width: 100%;
+}
+.ims-video-upload-control-wrapper label {
+    background-color: #d3394c;
+    color: #fff;
+    font-family: tahoma;
+    font-size: 15px;
+    padding: 8px 20px!important;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+}
+.ims-video-upload-control-wrapper:hover label.ims-video-upload-label {
+    background: #722040!important;
+}
+.list-controls {
+    z-index: 1000;
+    box-shadow: rgb(238, 238, 238) 0px -2px 2px;
+    padding: 5px 15px;
+    border: 1px solid rgb(221, 221, 221);
+    border-image: initial;
+    background-image: none;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+.list-controls .btn {
+    border-radius: 0px;
+}
+.p-0 {
+    padding: 0 !important;
+}
+.p-l-0 {
+    padding-left: 0 !important;
 }

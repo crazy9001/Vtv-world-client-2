@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TitleVideoComponent } from './title-video.component';
+import { SeoInfomationComponent } from './seo-infomation.component';
 
-describe('TitleVideoComponent', () => {
-  let component: TitleVideoComponent;
-  let fixture: ComponentFixture<TitleVideoComponent>;
+describe('SeoInfomationComponent', () => {
+  let component: SeoInfomationComponent;
+  let fixture: ComponentFixture<SeoInfomationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TitleVideoComponent ]
+      declarations: [ SeoInfomationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TitleVideoComponent);
+    fixture = TestBed.createComponent(SeoInfomationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

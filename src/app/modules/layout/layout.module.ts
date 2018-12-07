@@ -13,9 +13,10 @@ import {VideoComponent} from '../../components/video/video.component';
 import {DraftComponent} from '../../components/video/draft/draft.component';
 import {VideoService} from '../../services/video.service';
 import {CreateVideoComponent} from '../../components/video/create-video/create-video.component';
-import {TitleVideoComponent} from '../../components/layout/elements/video/title-video/title-video.component';
 import { MediumEditorDirective } from 'angular-medium-editor/medium-editor.directive';
 import { Select2Module } from 'ng2-select2';
+import {SeoInfomationComponent} from '../../components/layout/elements/seo-infomation/seo-infomation.component';
+import {VideoContentComponent} from '../../components/layout/elements/video-content/video-content.component';
 
 @NgModule({
     imports: [
@@ -35,8 +36,9 @@ import { Select2Module } from 'ng2-select2';
         VideoComponent,
         DraftComponent,
         CreateVideoComponent,
-        TitleVideoComponent,
-        MediumEditorDirective
+        MediumEditorDirective,
+        SeoInfomationComponent,
+        VideoContentComponent
     ],
     providers: [
         VideoService
