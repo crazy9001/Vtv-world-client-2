@@ -17,6 +17,8 @@ import { MediumEditorDirective } from 'angular-medium-editor/medium-editor.direc
 import { Select2Module } from 'ng2-select2';
 import {SeoInfomationComponent} from '../../components/layout/elements/seo-infomation/seo-infomation.component';
 import {VideoContentComponent} from '../../components/layout/elements/video-content/video-content.component';
+import {DetailVideoComponent} from '../../components/video/detail-video/detail-video.component';
+import {MediaComponent} from '../../components/layout/elements/media/media.component';
 
 @NgModule({
     imports: [
@@ -38,7 +40,9 @@ import {VideoContentComponent} from '../../components/layout/elements/video-cont
         CreateVideoComponent,
         MediumEditorDirective,
         SeoInfomationComponent,
-        VideoContentComponent
+        VideoContentComponent,
+        DetailVideoComponent,
+        MediaComponent
     ],
     providers: [
         VideoService

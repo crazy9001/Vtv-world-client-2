@@ -7,6 +7,7 @@ import {AuthGuard} from '../../guards/auth.guard';
 import {VideoComponent} from '../../components/video/video.component';
 import {DraftComponent} from '../../components/video/draft/draft.component';
 import {CreateVideoComponent} from '../../components/video/create-video/create-video.component';
+import {DetailVideoComponent} from '../../components/video/detail-video/detail-video.component';
 
 const appRoutes: Routes = [
     {
@@ -30,6 +31,10 @@ const appRoutes: Routes = [
                     {
                         path: 'Create',
                         component: CreateVideoComponent
+                    },
+                    {
+                        path: 'Details/:id',
+                        component: DetailVideoComponent
                     }
                 ]
             }

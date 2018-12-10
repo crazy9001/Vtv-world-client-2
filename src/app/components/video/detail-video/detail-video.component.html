@@ -18,7 +18,8 @@
                         f.controls['description'].dirty)}
                         ">
                     <label class="control-label">Mô tả ngắn</label>
-                    <textarea formControlName="description" required="" class="form-control video_description"></textarea>
+                    <textarea formControlName="description" required=""
+                              class="form-control video_description"></textarea>
                 </div>
                 <div class="control-group" id="video_publish">
                     <label class="control-label">Ngày xuất bản</label>
@@ -26,7 +27,8 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">Chuyên mục chính</label>
-                    <select2 name="category" [data]="CategoryData" [value]="currentValue" (valueChanged)="valueChanged($event)"
+                    <select2 name="category" [data]="CategoryData" [value]="currentValue"
+                             (valueChanged)="valueChanged($event)"
                              [options]="{ placeholder: 'Chọn chuyên mục' }"></select2>
                 </div>
                 <div class="control-group">
@@ -55,11 +57,9 @@
                 <div class="VideoUploadLoadWrapper">
                     <div class="VideoUploadInputWrapper">
                         <div class="ims-video-upload-control-wrapper">
-                            <label class="ims-video-upload-label" id="InputTypeFileTxt" data-toggle="modal" data-target="#__mediaUploadFile">+ Chèn Video</label>
-
-                            <app-media></app-media>
-
-                            <input type="hidden" formControlName="content" value="https://www.youtube.com/watch?v=MNwIsR0Wsp8" class="form-control">
+                            <label class="ims-video-upload-label" id="InputTypeFileTxt">+ Chèn Video</label>
+                            <input type="hidden" formControlName="content"
+                                   value="https://www.youtube.com/watch?v=MNwIsR0Wsp8" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">Meta description</label>
-                    <textarea formControlName="seo_description" class="video_seo_description form-control" ></textarea>
+                    <textarea formControlName="seo_description" class="video_seo_description form-control"></textarea>
                 </div>
             </div>
 
@@ -86,12 +86,14 @@
         <div id="stack-controls" class="list-controls scroll-to-fixed-fixed">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <button name="cancel" type="button" value="Cancel" onclick="location.href='videos.php'" class="btn btn-small btn-normal btn-strong">
+                    <button name="cancel" type="button" value="Cancel" onclick="location.href='videos.php'"
+                            class="btn btn-small btn-normal btn-strong">
                         <i class="fa fa-arrow-left"></i> Quay lại
                     </button>
                 </div>
                 <div class="btn-group">
-                    <button name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong" [disabled]="f.invalid" (click)="onSubmit()">
+                    <button name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong"
+                            [disabled]="f.invalid" (click)="onSubmit()">
                         <i class="fa fa-save"></i> Lưu video
                     </button>
                 </div>

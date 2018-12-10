@@ -62,9 +62,9 @@
                         <div class="pull-right media-mini text-center text-muted">
                             <small class="category-video">{{ video.category && video.category.name ? video.category.name : ''}}</small>
                         </div>
-                        <h4 href="#" class="title-video">
+                        <a [routerLink]="['Details', video.id]" class="title-video">
                             {{ video.title }}
-                        </h4>
+                        </a>
                         <small class="block m-b-5">
                             <span class="">Ngày tạo</span>
                             <span class=""> Thứ Năm, {{ video.element && video.element.time_created ? video.element.time_created : ''}}</span>
