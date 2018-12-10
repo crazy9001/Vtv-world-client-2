@@ -22,4 +22,5 @@ export class VideoModel {
     thumbnails: string;
     created_at: string;
     element: any;
+    category: object;
 }

@@ -325,9 +325,9 @@ content h2 a.label {
 .media {
     font-family: "Cuprum", Arial, Geneva, sans-serif;
 }
-.list-video-item {
+/*.list-video-item {
      height: 400px;
-}
+}*/
 .border-radius-0 {
     border-radius: 0 !important;
     -moz-border-radius: 4px;

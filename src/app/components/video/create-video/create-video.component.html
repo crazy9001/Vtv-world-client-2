@@ -26,7 +26,7 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">Chuyên mục chính</label>
-                    <select2 [data]="CategoryData" [value]="currentValue" (valueChanged)="valueChanged($event)"
+                    <select2 name="category" [data]="CategoryData" [value]="currentValue" (valueChanged)="valueChanged($event)"
                              [options]="{ placeholder: 'Chọn chuyên mục' }"></select2>
                 </div>
                 <div class="control-group">
@@ -50,9 +50,33 @@
 
         <div class="col-sm-4 p-0">
 
-            <app-video-content></app-video-content>
+            <div class="widget border-radius-0 shadow-div">
+                <h4>Video</h4>
+                <div class="VideoUploadLoadWrapper">
+                    <div class="VideoUploadInputWrapper">
+                        <div class="ims-video-upload-control-wrapper">
+                            <label class="ims-video-upload-label" id="InputTypeFileTxt">+ Chèn Video</label>
+                            <input type="hidden" formControlName="content" value="https://www.youtube.com/watch?v=MNwIsR0Wsp8" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <app-seo-infomation></app-seo-infomation>
+            <div class="widget border-radius-0 shadow-div">
+                <h4>Thông tin SEO</h4>
+                <div class="control-group">
+                    <label class="control-label">Meta title</label>
+                    <input formControlName="seo_title" type="text" class="form-control">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Meta keyword</label>
+                    <input formControlName="seo_keywords" type="text" class="form-control">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Meta description</label>
+                    <textarea formControlName="seo_description" class="video_seo_description form-control" ></textarea>
+                </div>
+            </div>
 
         </div>
         <div class="clearfix"></div>

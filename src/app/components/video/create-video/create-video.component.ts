@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Select2OptionData} from 'ng2-select2';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
+import {NgProgress} from 'ngx-progressbar';
+import {Subscription} from 'rxjs/Subscription';
+import {VideoService} from '../../../services/video.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-create-video',
@@ -10,12 +14,16 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class CreateVideoComponent implements OnInit {
     f: FormGroup;
+    subScription: Subscription;
 
     public CategoryData: Array<Select2OptionData>;
     public currentValue: any;
-    public valueChangeValue: any;
+    public category: any;
     constructor(
         private formBuilder: FormBuilder,
+        private videoService: VideoService,
+        private routerService: Router,
+        public progressService: NgProgress
     ) {
 
     }
@@ -23,17 +31,15 @@ export class CreateVideoComponent implements OnInit {
     ngOnInit() {
         this.f = this.formBuilder.group({
             title: [null, [Validators.required]],
-            category: [null, null],
             description: [null, [Validators.required]],
             publish_at: [null, null],
             sub_category: [null, null],
             tags: [null, null],
             source: [null, null],
-            seo_infomation: this.formBuilder.group({
-                seo_title: '',
-                seo_keywords: '',
-                seo_description: ''
-            })
+            content: '',
+            seo_title: '',
+            seo_keywords: '',
+            seo_description: ''
         });
         this.CategoryData = [
             {
@@ -48,11 +54,20 @@ export class CreateVideoComponent implements OnInit {
         this.currentValue = null;
     }
     valueChanged($evt) {
-        this.valueChangeValue = $evt.value;
-        console.log(this.valueChangeValue);
+        this.category = $evt.value;
     }
 
     onSubmit() {
-        console.log(this.f.value);
+        this.f.value.category_id = this.category;
+        this.progressService.start();
+        this.subScription = this.videoService.create(this.f.value).subscribe(res => {
+            this.progressService.done();
+            this.f.reset();
+            this.routerService.navigate(['DefaultV1/Video/Draft']);
+        }, (errorRes: HttpErrorResponse) => {
+            if (errorRes.status === 401) {
+                this.progressService.done();
+            }
+        });
     }
 }

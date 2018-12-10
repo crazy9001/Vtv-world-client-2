@@ -52,57 +52,26 @@
 <div class="row">
     <div class="col-sm-12 portlet"> <!-- scrollable inbox widget -->
         <section class="panel list-video-item">
-            <section class="panel-body m-b">
-                <article class="media">
+            <section class="panel-body m-b" *ngIf="videos">
+                <article class="media" *ngFor="let video of videos.data">
                         <span class="pull-left video-thumbnails">
                             <img src="assets/images/0612tai-chinh-trua-15440768873251088758106-042b7_thumb6.jpg"
                                  alt="John said">
                         </span>
                     <div class="media-body">
                         <div class="pull-right media-mini text-center text-muted">
-                            <small class="category-video">Xã hội</small>
+                            <small class="category-video">{{ video.category && video.category.name ? video.category.name : ''}}</small>
                         </div>
                         <h4 href="#" class="title-video">
-                            Liên tiếp xảy ra nhiều vụ cướp nhằm vào xe ôm công nghệ
+                            {{ video.title }}
                         </h4>
                         <small class="block m-b-5">
                             <span class="">Ngày tạo</span>
-                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
+                            <span class=""> Thứ Năm, {{ video.element && video.element.time_created ? video.element.time_created : ''}}</span>
                         </small>
                         <small class="block m-b-5">
                             <span class="">Ngày xuất bản</span>
-                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
-                        </small>
-                        <small class="block m-b-5">
-                            <span class="">Người tạo</span>
-                            <span class=""> toinn</span>
-                        </small>
-                        <small class="block m-b-5">
-                            <span class="">Lượt xem</span>
-                            <span class=""> 0</span>
-                        </small>
-                    </div>
-                </article>
-                <div class="line pull-in"></div>
-                <article class="media">
-                        <span class="pull-left video-thumbnails">
-                            <img src="assets/images/0612tai-chinh-trua-15440768873251088758106-042b7_thumb6.jpg"
-                                 alt="John said">
-                        </span>
-                    <div class="media-body">
-                        <div class="pull-right media-mini text-center text-muted">
-                            <small class="category-video">Xã hội</small>
-                        </div>
-                        <h4 href="#" class="title-video">
-                            Liên tiếp xảy ra nhiều vụ cướp nhằm vào xe ôm công nghệ
-                        </h4>
-                        <small class="block m-b-5">
-                            <span class="">Ngày tạo</span>
-                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
-                        </small>
-                        <small class="block m-b-5">
-                            <span class="">Ngày xuất bản</span>
-                            <span class=""> Thứ Năm, 6/12/2018 13:06</span>
+                            <span class=""> Thứ Năm, {{ video.element && video.element.publish_at ? video.element.publish_at : ''}}</span>
                         </small>
                         <small class="block m-b-5">
                             <span class="">Người tạo</span>
