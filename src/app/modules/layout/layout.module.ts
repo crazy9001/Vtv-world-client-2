@@ -19,6 +19,22 @@ import {SeoInfomationComponent} from '../../components/layout/elements/seo-infom
 import {VideoContentComponent} from '../../components/layout/elements/video-content/video-content.component';
 import {DetailVideoComponent} from '../../components/video/detail-video/detail-video.component';
 import {MediaComponent} from '../../components/layout/elements/media/media.component';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import {environment} from './../../../environments/environment.prod';
+
+const token = localStorage.getItem('token');
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+    url: `${environment.api_url}/media/upload`,
+    chunking: true,
+    method: 'POST',
+    maxFilesize: 2048,
+    chunkSize: 2000000,
+    acceptedFiles: 'image/*,.mp4',
+    dictDefaultMessage : '<img src="assets/images/graphic-upload-area.svg" class="upload-aria"><div class="uploader-active-text">Drag and drop files here</div>',
+    headers: {'Authorization': `Bearer ${token}`},
+};
 
 @NgModule({
     imports: [
@@ -26,7 +42,8 @@ import {MediaComponent} from '../../components/layout/elements/media/media.compo
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        Select2Module
+        Select2Module,
+        DropzoneModule
     ],
     declarations: [
         LayoutComponent,
@@ -45,7 +62,11 @@ import {MediaComponent} from '../../components/layout/elements/media/media.compo
         MediaComponent
     ],
     providers: [
-        VideoService
+        VideoService,
+        {
+            provide: DROPZONE_CONFIG,
+            useValue: DEFAULT_DROPZONE_CONFIG
+        }
     ]
 })
 export class LayoutModule {

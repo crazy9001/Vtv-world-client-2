@@ -19446,3 +19446,25 @@ body.locale-he-il, body.locale-he-il .press-this a.wp-switch-editor {
     vertical-align: baseline;
     color: #4f636e;
 }
+#__mediaTabControl {
+    border-bottom: none ;
+}
+#__mediaTabControl  li.active {
+    border: none;
+}
+#__mediaTabControl > li > a {
+    border-radius: 0;
+    outline: none;
+}
+#__mediaTabControl>li.active>a, #__mediaTabControl>li.active>a:focus, #__mediaTabControl>li.active>a:hover, #__mediaTabControl>li>a {
+    outline: none;
+    -webkit-box-shadow: none;
+}
+#__mediaTabControl.media-router {
+    margin: -4px;
+}
+.upload-aria {
+    max-width: 9rem;
+    display: block;
+    margin: auto auto .25rem;
+}

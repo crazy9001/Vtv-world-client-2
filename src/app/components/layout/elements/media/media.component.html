@@ -41,9 +41,8 @@
                     <div class="uploader-inline tab-pane fade in active" id="media-uploader-inline">
                         <div class="uploader-inline-content no-upload-message">
                             <div class="upload-ui">
-                                <form action="" class="dropzone" id="mediaZoneUpload">
-                                    <input type="file" name="file" style="display: none;">
-                                </form>
+                                <!--<dropzone [config]="config" [message]="'Click or drag images here to upload'"></dropzone>-->
+                                <div class="dropzone" [dropzone]="config"></div>
                             </div>
                         </div>
                     </div>
@@ -73,26 +72,6 @@
                                 <label for="media-search-input" class="screen-reader-text"> Tìm trong đa phương
                                     tiện </label>
                                 <input type="search" placeholder="Tìm kiếm" id="media-search-input" class="search">
-                            </div>
-                        </div>
-
-                        <div class="uploader-inline hidden">
-                            <div class="uploader-inline-content has-upload-message">
-                                <h2 class="upload-message">Không có mục nào được tìm thấy.</h2>
-                                <div class="upload-ui">
-                                    <h2 class="upload-instructions drop-instructions">
-                                        Kéo thả các các file vào bất kì nơi nào trên trang này để tải lên.
-                                    </h2>
-                                    <p class="upload-instructions drop-instructions">hoặc</p>
-                                    <a href="#" class="browser button button-hero"
-                                       style="display: inline; position: relative; z-index: 1;" id="__wp-uploader-id-1">
-                                        Chọn tập tin
-                                    </a>
-                                </div>
-                                <div class="upload-inline-status"></div>
-                                <div class="post-upload-ui">
-                                    <p class="max-upload-size">Kích thước tập tin tải lên tối đa: 128 MB</p>
-                                </div>
                             </div>
                         </div>
 
