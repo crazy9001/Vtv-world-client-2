@@ -20,8 +20,8 @@ import {VideoContentComponent} from '../../components/layout/elements/video-cont
 import {DetailVideoComponent} from '../../components/video/detail-video/detail-video.component';
 import {MediaComponent} from '../../components/layout/elements/media/media.component';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
-import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+
 import {environment} from './../../../environments/environment.prod';
 
 const token = localStorage.getItem('token');
@@ -43,7 +43,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ReactiveFormsModule,
         RouterModule,
         Select2Module,
-        DropzoneModule
+        DropzoneModule.forRoot(DEFAULT_DROPZONE_CONFIG)
     ],
     declarations: [
         LayoutComponent,
@@ -63,10 +63,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ],
     providers: [
         VideoService,
-        {
-            provide: DROPZONE_CONFIG,
-            useValue: DEFAULT_DROPZONE_CONFIG
-        }
     ]
 })
 export class LayoutModule {
