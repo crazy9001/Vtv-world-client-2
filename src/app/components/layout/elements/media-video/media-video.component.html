@@ -74,12 +74,12 @@
 
                         <ul *ngIf="mediaVideos" tabindex="-1" class="attachments ui-sortable ui-sortable-disabled" id="__attachments-view-720">
 
-                            <li *ngFor="let mediaVideo of mediaVideos.files.data" class="attachment save-ready" [ngClass]="{details: isActive(mediaVideo)}" (click)="select(mediaVideo)">
+                            <li *ngFor="let mediaVideo of mediaVideos.files.data" class="attachment save-ready" [ngClass]="{details: isActive(mediaVideo)}" (click)="loadDetailVideoEvent(mediaVideo)">
                                 <div class="attachment-preview js-select-attachment type-image subtype-jpeg landscape">
                                     <div class="thumbnail">
                                         <div *ngIf="mediaVideo.progress == 1">
                                             <div class="centered">
-                                                <img src="{{ 'http://api-vtv-world.local.ub/storage' + mediaVideo.thumbnails.small }}">
+                                                <img src="{{ environment.storage_url + mediaVideo.thumbnails.small }}">
                                             </div>
                                             <span class="MediaStatusVideo Completed" original-title="Đã tải và convert thành công"></span>
                                             <a class="media-play-button"></a>
@@ -100,7 +100,9 @@
                             </li>
 
                         </ul>
-                        <div class="media-sidebar" id="media-sidebar" [innerHTML]="htmlSideRight | sanitizeHtml "></div>
+                        <div class="media-sidebar" id="media-sidebar">
+                            <app-media-detail-video *ngIf="loadDetail" [video]="selected" [playVideo]="playVideo"></app-media-detail-video>
+                        </div>
                     </div>
 
                 </div>

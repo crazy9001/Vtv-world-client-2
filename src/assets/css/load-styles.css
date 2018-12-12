@@ -2447,9 +2447,9 @@ html:lang(he-il) .rtl #wpadminbar * {
     overflow: auto;
     -webkit-overflow-scrolling: touch
 }
-#attachment-details {
+/*#attachment-details {
     padding-right: 10px;
-}
+}*/
 
 .hide-toolbar .media-sidebar {
     bottom: 0

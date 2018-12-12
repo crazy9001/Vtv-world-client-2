@@ -27,8 +27,10 @@ import {MediaImageComponent} from '../../components/layout/elements/media-image/
 import {MediaService} from '../../services/media.service';
 import {MediaVideoComponent} from '../../components/layout/elements/media-video/media-video.component';
 import {SanitizeHtml} from '../../pipe/sanitizehtml.pipe';
+import {MediaDetailVideoComponent} from '../../components/layout/elements/media-detail-video/media-detail-video.component';
 
 const token = localStorage.getItem('token');
+console.log(token);
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
     chunking: true,
@@ -66,7 +68,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         MediaComponent,
         MediaImageComponent,
         MediaVideoComponent,
-        SanitizeHtml
+        SanitizeHtml,
+        MediaDetailVideoComponent
     ],
     providers: [
         VideoService,

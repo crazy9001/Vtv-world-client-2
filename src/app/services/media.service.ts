@@ -21,7 +21,6 @@ export class MediaService {
         return this.httpClient.get(`${environment.api_url}` + this.apiMediaVideo)
             .toPromise()
             .then((response) => {
-                console.log(response);
                 this.progressService.done();
                 return response as PaginatedMedia;
             })
@@ -33,7 +32,6 @@ export class MediaService {
         return this.httpClient.get(`${environment.api_url}` + this.apiMediaImage)
             .toPromise()
             .then((response) => {
-                console.log(response);
                 this.progressService.done();
                 return response as PaginatedMedia;
             })
