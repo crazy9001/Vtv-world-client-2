@@ -1,6 +1,6 @@
-<div class="modal fade" id="__mediaUploadFile" role="dialog" aria-hidden="true">
+<div class="modal fade" id="__mediaUploadVideo" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="media-modal wp-core-ui">
-        <button type="button" class="button-link media-modal-close">
+        <button type="button" class="button-link media-modal-close" data-dismiss="modal">
         <span class="media-modal-icon">
             <span class="screen-reader-text">Đóng bảng điều khiển Media</span>
         </span>
@@ -22,26 +22,23 @@
                     <div class="media-router">
                         <ul class="nav nav-tabs" id="__mediaTabControl">
                             <li class="active">
-                                <a data-toggle="tab" href="#media-uploader-inline" class="media-menu-item">Tải tập tin
-                                    lên</a>
+                                <a data-toggle="tab" href="#media-uploader-video" class="media-menu-item">
+                                    Tải tập tin lên
+                                </a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#media-attachments" class="media-menu-item button_media"
-                                   data-action="image">Thư viện nội dung ảnh</a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#media-attachments" class="media-menu-item button_media"
-                                   data-action="video">Thư viện nội dung video</a>
+                                <a data-toggle="tab" href="#media-attachments" class="media-menu-item button_media" (click)="loadMediaVideo()">
+                                    Thư viện nội dung video
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="media-frame-content tab-content" data-columns="9">
 
-                    <div class="uploader-inline tab-pane fade in active" id="media-uploader-inline">
+                    <div class="uploader-inline tab-pane fade in active" id="media-uploader-video">
                         <div class="uploader-inline-content no-upload-message">
                             <div class="upload-ui">
-                                <!--<dropzone [config]="config" [message]="'Click or drag images here to upload'"></dropzone>-->
                                 <div class="dropzone" [dropzone]="config"></div>
                             </div>
                         </div>
@@ -75,50 +72,40 @@
                             </div>
                         </div>
 
-                        <ul tabindex="-1" class="attachments ui-sortable ui-sortable-disabled"
-                            id="__attachments-view-720">
+                        <ul *ngIf="mediaVideos" tabindex="-1" class="attachments ui-sortable ui-sortable-disabled" id="__attachments-view-720">
 
-                            <li tabindex="0" role="checkbox" aria-label="ahihi" aria-checked="false"
-                                data-action="attach"
-                                data-id="1" class="attachment save-ready"
-                                data-uploaded="thu 5"
-                                data-size="10024"
-                                data-path=""
-                                data-name=""
-                                data-thumb-medium=""
-                                data-mime-type=""
-                                data-mime="">
+                            <li *ngFor="let mediaVideo of mediaVideos.files.data" class="attachment save-ready" [ngClass]="{details: isActive(mediaVideo)}" (click)="select(mediaVideo)">
                                 <div class="attachment-preview js-select-attachment type-image subtype-jpeg landscape">
                                     <div class="thumbnail">
-                                        <div class="centered"><img src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?cs=srgb&dl=beautiful-blur-bright-326055.jpg&fm=jpg"></div>
+                                        <div *ngIf="mediaVideo.progress == 1">
+                                            <div class="centered">
+                                                <img src="{{ 'http://api-vtv-world.local.ub/storage' + mediaVideo.thumbnails.small }}">
+                                            </div>
+                                            <span class="MediaStatusVideo Completed" original-title="Đã tải và convert thành công"></span>
+                                            <a class="media-play-button"></a>
+                                        </div>
+                                        <div *ngIf="mediaVideo.progress == 0">
+                                            <div class="centered">
+                                            </div>
+                                            <span class="MediaStatusVideo Downloading" original-title="Đang trong quá trình convert (99%)">
+                                                <img src="assets/images/spinner.gif">
+                                            </span>
+                                        </div>
                                     </div>
-
+                                    <div class="filename">{{ mediaVideo.file_name ? mediaVideo.file_name : '' }}</div>
                                 </div>
                                 <button type="button" class="button-link check" tabindex="-1">
                                     <span class="media-modal-icon"></span>
-                                    <span class="screen-reader-text">Bỏ chọn</span>
                                 </button>
                             </li>
 
                         </ul>
-                        <div class="media-sidebar" id="media-sidebar"></div>
+                        <div class="media-sidebar" id="media-sidebar" [innerHTML]="htmlSideRight | sanitizeHtml "></div>
                     </div>
 
                 </div>
                 <div class="media-frame-toolbar">
                     <div class="media-toolbar">
-                        <div class="media-toolbar-secondary">
-                            <div class="media-selection empty">
-                                <div class="selection-info">
-                                    <span class="count">0 được chọn</span>
-                                    <button type="button" class="button-link edit-selection">Sửa lựa chọn</button>
-                                    <button type="button" class="button-link clear-selection">Xóa</button>
-                                </div>
-                                <div class="selection-view">
-                                    <ul tabindex="-1" class="attachments" id="__attachments-view-111"></ul>
-                                </div>
-                            </div>
-                        </div>
                         <div class="media-toolbar-primary search-form">
                             <button type="button"
                                     class="button media-button button-primary button-large media-button-insert"

@@ -2441,7 +2441,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 .media-sidebar {
     position: absolute;
     width: 319px;
-    padding: 0 0 24px 10px;
+    padding: 0 10px 24px 10px;
     z-index: 75;
     border-left: 1px solid #ddd;
     overflow: auto;
@@ -2509,7 +2509,8 @@ html:lang(he-il) .rtl #wpadminbar * {
 }
 
 .attachment-details .setting select, .media-sidebar .setting select {
-    max-width: 65%
+    max-width: 65%;
+    font-weight: 300;
 }
 
 .attachment-details .field input[type=radio], .attachment-details .field input[type=checkbox], .attachment-details .setting input[type=radio], .attachment-details .setting input[type=checkbox], .media-sidebar .field input[type=radio], .media-sidebar .field input[type=checkbox], .media-sidebar .setting input[type=radio], .media-sidebar .setting input[type=checkbox] {
@@ -2543,7 +2544,8 @@ html:lang(he-il) .rtl #wpadminbar * {
     box-sizing: border-box;
     margin: 1px;
     width: 65%;
-    float: right
+    float: right;
+    font-weight: 300;
 }
 
 .attachment-details .setting .value, .media-sidebar .setting .value {
@@ -2995,7 +2997,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 .wp-core-ui .attachment .filename {
     bottom: 0;
     overflow: hidden;
-    /*box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);*/
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);
     line-height: 16px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -4724,21 +4726,6 @@ html:lang(he-il) .rtl #wpadminbar * {
 
 .comment-ays, .feature-filter, .imgedit-group, .popular-tags, .stuffbox, .widgets-holder-wrap, .wp-editor-container, p.popular-tags, table.widefat {
     background: #fff
-}
-
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0
-}
-
-body {
-    background: #f1f1f1;
-    color: #444;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    font-size: 13px;
-    line-height: 1.4em;
-    min-width: 600px
 }
 
 body.iframe {
@@ -19467,4 +19454,31 @@ body.locale-he-il, body.locale-he-il .press-this a.wp-switch-editor {
     max-width: 9rem;
     display: block;
     margin: auto auto .25rem;
+}
+
+#__attachments-view-720 .Downloading-Progress {
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+#__attachments-view-720 .MediaStatusVideo {
+    border-radius: 50%;
+    display: block;
+    height: 14px;
+    padding: 1px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 14px;
+    border: 1px solid #fff;
+}
+#__attachments-view-720 .Completed {
+    background: green;
 }

@@ -23,6 +23,10 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 import {environment} from './../../../environments/environment.prod';
+import {MediaImageComponent} from '../../components/layout/elements/media-image/media-image.component';
+import {MediaService} from '../../services/media.service';
+import {MediaVideoComponent} from '../../components/layout/elements/media-video/media-video.component';
+import {SanitizeHtml} from '../../pipe/sanitizehtml.pipe';
 
 const token = localStorage.getItem('token');
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -59,10 +63,14 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         SeoInfomationComponent,
         VideoContentComponent,
         DetailVideoComponent,
-        MediaComponent
+        MediaComponent,
+        MediaImageComponent,
+        MediaVideoComponent,
+        SanitizeHtml
     ],
     providers: [
         VideoService,
+        MediaService
     ]
 })
 export class LayoutModule {
