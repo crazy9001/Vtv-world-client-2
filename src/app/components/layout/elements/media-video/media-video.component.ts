@@ -2,6 +2,7 @@ import {Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import {PaginatedMedia} from '../../../../model/media-paginate.model';
 import {MediaService} from '../../../../services/media.service';
 import {environment} from './../../../../../environments/environment.prod';
+import { PusherService } from '../../../../services/pusher.service';
 declare var jQuery: any;
 
 @Component({
@@ -15,11 +16,18 @@ export class MediaVideoComponent implements OnInit {
     loadDetail = false;
     selected: any;
     playVideo = false;
-
+    progressGenthumb = false;
     @Output() messageEvent = new EventEmitter<string>();
     constructor(
         private mediaVideoService: MediaService,
+        private pusherService: PusherService
     ) {
+        this.pusherService.channel.bind('App\\Events\\GenerateThumbPusherEvent', data => {
+            console.log(data.message);
+            if (data.message === 'success') {
+                this.progressGenthumb = true;
+            }
+        });
     }
 
     ngOnInit() {
@@ -37,7 +45,6 @@ export class MediaVideoComponent implements OnInit {
         this.loadDetail = true;
         this.playVideo = false;
         this.selected = item;
-        console.log(this.playVideo);
     }
     CMSInsertVideo() {
         this.messageEvent.emit(this.selected);
