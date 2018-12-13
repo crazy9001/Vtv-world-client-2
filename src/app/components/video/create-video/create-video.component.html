@@ -52,14 +52,15 @@
 
             <div class="widget border-radius-0 shadow-div">
                 <h4>Video</h4>
-                <div class="VideoUploadLoadWrapper">
+                <div class="VideoUploadLoadWrapper control-group">
                     <div class="VideoUploadInputWrapper">
                         <div class="ims-video-upload-control-wrapper">
                             <label class="ims-video-upload-label" id="InputTypeFileTxt" data-toggle="modal" data-target="#__mediaUploadVideo">+ Chèn Video</label>
-                            <input type="hidden" formControlName="content" value="https://www.youtube.com/watch?v=MNwIsR0Wsp8" class="form-control">
+                            <input type="hidden" formControlName="content" [ngModel]="contentVideo"  class="form-control">
                             <app-media-video (messageEvent)="eventReceiveVideoInsert($event)"></app-media-video>
                         </div>
                     </div>
+                    <div [innerHTML]="CMSPreviewVideo | sanitizeHtml " *ngIf="insertVideo"></div>
                 </div>
             </div>
 

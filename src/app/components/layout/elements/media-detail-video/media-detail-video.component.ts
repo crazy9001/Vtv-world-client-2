@@ -23,8 +23,8 @@ export class MediaDetailVideoComponent implements OnInit, OnChanges {
     }
     eventPlayPreview() {
         this.playVideo = true;
-        this.CMSPlayVideoWrapper = '<video width="320" height="240" controls>' +
-            '<source src="' + this.video.path + '" type="video/mp4">' +
+        this.CMSPlayVideoWrapper = '<video controls>' +
+            '<source src="' + environment.storage_url + this.video.path + '" type="video/mp4">' +
             '</video>';
     }
 }

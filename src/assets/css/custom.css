@@ -403,8 +403,7 @@ textarea.video_seo_description {
     background: #eee;
 }
 .VideoUploadInputWrapper{
-    margin-left: 15px;
-    margin-top: 10px;
+    margin: 10px;
     width: 100%;
 }
 .ims-video-upload-control-wrapper {

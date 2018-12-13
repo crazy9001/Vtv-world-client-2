@@ -2,6 +2,7 @@ import {Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import {PaginatedMedia} from '../../../../model/media-paginate.model';
 import {MediaService} from '../../../../services/media.service';
 import {environment} from './../../../../../environments/environment.prod';
+declare var jQuery: any;
 
 @Component({
     selector: 'app-media-video',
@@ -40,5 +41,6 @@ export class MediaVideoComponent implements OnInit {
     }
     CMSInsertVideo() {
         this.messageEvent.emit(this.selected);
+        jQuery('#__mediaUploadVideo').modal('hide');
     }
 }

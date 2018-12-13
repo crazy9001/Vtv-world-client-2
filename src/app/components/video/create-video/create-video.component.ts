@@ -6,6 +6,7 @@ import {NgProgress} from 'ngx-progressbar';
 import {Subscription} from 'rxjs/Subscription';
 import {VideoService} from '../../../services/video.service';
 import {Router} from '@angular/router';
+import {environment} from '../../../../environments/environment.prod';
 
 @Component({
     selector: 'app-create-video',
@@ -20,6 +21,9 @@ export class CreateVideoComponent implements OnInit {
     public currentValue: any;
     public category: any;
     receiveVideoInsert: any;
+    CMSPreviewVideo: string;
+    insertVideo = false;
+    contentVideo: string;
     constructor(
         private formBuilder: FormBuilder,
         private videoService: VideoService,
@@ -37,7 +41,7 @@ export class CreateVideoComponent implements OnInit {
             sub_category: [null, null],
             tags: [null, null],
             source: [null, null],
-            content: '',
+            content: [null, [Validators.required]],
             seo_title: '',
             seo_keywords: '',
             seo_description: ''
@@ -73,6 +77,10 @@ export class CreateVideoComponent implements OnInit {
     }
     eventReceiveVideoInsert($event) {
         this.receiveVideoInsert = $event;
-        console.log(this.receiveVideoInsert);
+        this.insertVideo = true;
+        this.contentVideo = this.receiveVideoInsert.path;
+        this.CMSPreviewVideo = '<video controls style="max-width:100%">' +
+            '<source src="' + environment.storage_url + this.receiveVideoInsert.path + '" type="video/mp4">' +
+            '</video>';
     }
 }
