@@ -380,7 +380,6 @@ textarea.video_seo_description {
     resize: none;
 }
 #box-create-video input, #box-create-video textarea{
-    width: 100%;
     outline: none !important;
     border: solid 1px #ddd;
     border-radius: 0px !important;

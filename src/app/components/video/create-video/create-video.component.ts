@@ -19,6 +19,7 @@ export class CreateVideoComponent implements OnInit {
     public CategoryData: Array<Select2OptionData>;
     public currentValue: any;
     public category: any;
+    receiveVideoInsert: any;
     constructor(
         private formBuilder: FormBuilder,
         private videoService: VideoService,
@@ -69,5 +70,9 @@ export class CreateVideoComponent implements OnInit {
                 this.progressService.done();
             }
         });
+    }
+    eventReceiveVideoInsert($event) {
+        this.receiveVideoInsert = $event;
+        console.log(this.receiveVideoInsert);
     }
 }

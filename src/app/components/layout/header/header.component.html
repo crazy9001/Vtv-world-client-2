@@ -14,11 +14,13 @@
             </ul>
         </li>
     </ul>
-    <a class="navbar-brand" href="#">first</a>
+    <a class="navbar-brand" [routerLink]="['/DefaultV1']">
+        <img src="assets/images/logo.png">
+    </a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs"
             data-toggle="class:slide-nav slide-nav-left" data-target="body"><i
             class="fa fa-bars fa-lg text-default"></i></button>
-    <ul class="nav navbar-nav hidden-xs">
+    <!--<ul class="nav navbar-nav hidden-xs">
         <li>
             <div class="m-t m-b-small" id="panel-notifications"><a href="#" class="dropdown-toggle"
                                                                    data-toggle="dropdown"><i
@@ -64,5 +66,5 @@
     </ul>
     <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary"><i
             class="fa fa-search text-muted"></i> <input type="text" class="input-sm form-control" placeholder="Search">
-    </form>
+    </form>-->
 </header>

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnChanges } from '@angular/core';
 import {environment} from './../../../../../environments/environment.prod';
 
 @Component({
@@ -7,7 +7,7 @@ import {environment} from './../../../../../environments/environment.prod';
     styleUrls: ['./media-detail-video.component.css']
 })
 
-export class MediaDetailVideoComponent implements OnInit {
+export class MediaDetailVideoComponent implements OnInit, OnChanges {
     @Input() video;
     @Input() playVideo;
     environment: any;
@@ -18,11 +18,13 @@ export class MediaDetailVideoComponent implements OnInit {
     ngOnInit() {
         this.environment = environment;
     }
+    ngOnChanges() {
+        this.playVideo = false;
+    }
     eventPlayPreview() {
         this.playVideo = true;
         this.CMSPlayVideoWrapper = '<video width="320" height="240" controls>' +
             '<source src="' + this.video.path + '" type="video/mp4">' +
             '</video>';
-        console.log(this.playVideo);
     }
 }

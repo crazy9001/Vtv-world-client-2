@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import {PaginatedMedia} from '../../../../model/media-paginate.model';
 import {MediaService} from '../../../../services/media.service';
 import {environment} from './../../../../../environments/environment.prod';
@@ -14,6 +14,8 @@ export class MediaVideoComponent implements OnInit {
     loadDetail = false;
     selected: any;
     playVideo = false;
+
+    @Output() messageEvent = new EventEmitter<string>();
     constructor(
         private mediaVideoService: MediaService,
     ) {
@@ -35,5 +37,8 @@ export class MediaVideoComponent implements OnInit {
         this.playVideo = false;
         this.selected = item;
         console.log(this.playVideo);
+    }
+    CMSInsertVideo() {
+        this.messageEvent.emit(this.selected);
     }
 }
