@@ -16,7 +16,7 @@ import {environment} from '../../../../environments/environment.prod';
 export class CreateVideoComponent implements OnInit {
     f: FormGroup;
     subScription: Subscription;
-
+    environment: any;
     public CategoryData: Array<Select2OptionData>;
     public currentValue: any;
     public category: any;
@@ -24,13 +24,14 @@ export class CreateVideoComponent implements OnInit {
     CMSPreviewVideo: string;
     insertVideo = false;
     contentVideo: string;
+    thumbsVideo: any;
     constructor(
         private formBuilder: FormBuilder,
         private videoService: VideoService,
         private routerService: Router,
         public progressService: NgProgress
     ) {
-
+        this.environment = environment;
     }
 
     ngOnInit() {
@@ -79,6 +80,8 @@ export class CreateVideoComponent implements OnInit {
         this.receiveVideoInsert = $event;
         this.insertVideo = true;
         this.contentVideo = this.receiveVideoInsert.path;
+        this.thumbsVideo = Object.keys(this.receiveVideoInsert.thumbnails).map(key => ({type: key, value: this.receiveVideoInsert.thumbnails[key]}));
+        console.log(this.thumbsVideo);
         this.CMSPreviewVideo = '<video controls style="max-width:100%">' +
             '<source src="' + environment.storage_url + this.receiveVideoInsert.path + '" type="video/mp4">' +
             '</video>';

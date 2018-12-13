@@ -79,7 +79,7 @@
                                     <div class="thumbnail">
                                         <div *ngIf="mediaVideo.progress == 1">
                                             <div class="centered">
-                                                <img src="{{ environment.storage_url + mediaVideo.thumbnails.small }}">
+                                                <img src="{{ environment.storage_url + mediaVideo.thumbnails[0] }}">
                                             </div>
                                             <span class="MediaStatusVideo Completed" original-title="Đã tải và convert thành công"></span>
                                             <a class="media-play-button"></a>

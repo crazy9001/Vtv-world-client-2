@@ -64,6 +64,20 @@
                 </div>
             </div>
 
+            <div class="widget border-radius-0 shadow-div" *ngIf="insertVideo">
+                <h4>Ảnh đại diện</h4>
+                <div class="control-group">
+                    <ul id="CMSVideoEditItemAvatarChoose">
+                        <li *ngFor="let thumb of thumbsVideo">
+                            <label for="VMVideoEditItemAvatarChoose0">
+                                <img src="{{ environment.storage_url + thumb.value }}">
+                            </label>
+                            <input type="radio" name="VMVideoEditItemAvatarChoose" id="VMVideoEditItemAvatarChoose0">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="widget border-radius-0 shadow-div">
                 <h4>Thông tin SEO</h4>
                 <div class="control-group">

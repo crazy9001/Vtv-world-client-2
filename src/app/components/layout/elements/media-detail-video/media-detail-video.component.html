@@ -7,7 +7,7 @@
         <div class="attachment-info">
             <div class="thumbnail thumbnail-video">
                 <div *ngIf="!playVideo">
-                    <img [src]="environment.storage_url  + video.thumbnails.medium" >
+                    <img [src]="environment.storage_url  + video.thumbnails[0]" >
                     <a class="media-play-button" (click)="eventPlayPreview()"></a>
                 </div>
                 <div *ngIf="playVideo" [innerHTML]="CMSPlayVideoWrapper | sanitizeHtml ">

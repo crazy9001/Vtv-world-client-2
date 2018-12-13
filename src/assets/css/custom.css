@@ -442,3 +442,35 @@ textarea.video_seo_description {
 .p-l-0 {
     padding-left: 0 !important;
 }
+
+#CMSVideoEditItemAvatarChoose {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+#CMSVideoEditItemAvatarChoose li {
+    list-style-type: none;
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: 5px;
+    vertical-align: top;
+}
+#CMSVideoEditItemAvatarChoose label {
+    display: table-cell;
+    vertical-align: middle;
+    height: 110px;
+    overflow: hidden;
+    width: 132px;
+    background: url(../images/VMVideoThumbLoading.gif) no-repeat center center;
+    border: solid 1px #ccc;
+}
+#CMSVideoEditItemAvatarChoose img {
+    width: 100%;
+    margin-bottom: 5px;
+}
+#CMSVideoEditItemAvatarChoose input[type=radio] {
+    border-radius: 50% !important;
+}
+
