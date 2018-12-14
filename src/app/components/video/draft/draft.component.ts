@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PaginatedVideo} from '../../../model/video-paginate.model';
 import {VideoService} from '../../../services/video.service';
+import {environment} from '../../../../environments/environment.prod';
 
 @Component({
     selector: 'app-draft',
@@ -8,11 +9,12 @@ import {VideoService} from '../../../services/video.service';
     styleUrls: ['./draft.component.css']
 })
 export class DraftComponent implements OnInit {
-
+    environment: any;
     videos: PaginatedVideo;
     constructor(
         private videoService: VideoService,
     ) {
+        this.environment = environment;
     }
 
     ngOnInit() {

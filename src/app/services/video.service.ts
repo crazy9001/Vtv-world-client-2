@@ -41,7 +41,6 @@ export class VideoService {
         return this.httpClient.get(`${environment.api_url}` + this.apiVideoDraft)
             .toPromise()
             .then((response) => {
-                console.log(response);
                 this.progressService.done();
                 return response as PaginatedVideo;
             })

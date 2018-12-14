@@ -1,4 +1,5 @@
-import {Component, OnInit, Input, OnChanges } from '@angular/core';
+declare var videojs: any;
+import {Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
 import {environment} from './../../../../../environments/environment.prod';
 
 @Component({
@@ -7,11 +8,13 @@ import {environment} from './../../../../../environments/environment.prod';
     styleUrls: ['./media-detail-video.component.css']
 })
 
-export class MediaDetailVideoComponent implements OnInit, OnChanges {
+export class MediaDetailVideoComponent implements OnInit, OnChanges, OnDestroy {
     @Input() video;
     @Input() playVideo;
     environment: any;
-    CMSPlayVideoWrapper: string;
+    videoJSplayer: any;
+    videoUrl: string;
+    id: number;
     constructor() {
     }
 
@@ -21,10 +24,21 @@ export class MediaDetailVideoComponent implements OnInit, OnChanges {
     ngOnChanges() {
         this.playVideo = false;
     }
-    eventPlayPreview() {
+    async eventPlayPreview() {
         this.playVideo = true;
-        this.CMSPlayVideoWrapper = '<video controls>' +
-            '<source src="' + environment.storage_url + this.video.path + '" type="video/mp4">' +
-            '</video>';
+        this.id = this.video.id;
+        this.videoUrl = environment.storage_url + this.video.path;
+        await this.loadPlayer();
+    }
+    loadPlayer() {
+        const _this = this;
+        setTimeout(function(){
+            _this.videoJSplayer = videojs(document.getElementById('video_player_id_' + _this.id), {}, function() {
+                this.play();
+            });
+        }, 1);
+    }
+    ngOnDestroy() {
+        this.videoJSplayer.dispose();
     }
 }

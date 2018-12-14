@@ -60,7 +60,16 @@
                             <app-media-video (messageEvent)="eventReceiveVideoInsert($event)"></app-media-video>
                         </div>
                     </div>
-                    <div [innerHTML]="CMSPreviewVideo | sanitizeHtml " *ngIf="insertVideo"></div>
+                    <div *ngIf="insertVideo">
+                        <video *ngIf="videoInsertUrl" id="preview_video_content{{ idVideoInsert }}"
+                               class="video-js vjs-big-play-centered"
+                               controls
+                               preload="auto"
+                               height="280"
+                               style="width:100%">
+                            <source [src]=" environment.storage_url + videoInsertUrl" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
             </div>
 
@@ -68,11 +77,13 @@
                 <h4>Ảnh đại diện</h4>
                 <div class="control-group">
                     <ul id="CMSVideoEditItemAvatarChoose">
-                        <li *ngFor="let thumb of thumbsVideo">
+                        <li *ngFor="let thumb of thumbsVideo;  let idx = index">
                             <label for="VMVideoEditItemAvatarChoose0">
                                 <img src="{{ environment.storage_url + thumb.value }}">
                             </label>
-                            <input type="radio" name="VMVideoEditItemAvatarChoose" id="VMVideoEditItemAvatarChoose0">
+                            <input type="radio" formControlName="thumbnails" id="VMVideoEditItemAvatarChoose0"
+                                   [checked]="idx === 0"
+                                   [value]="thumb.value">
                         </li>
                     </ul>
                 </div>

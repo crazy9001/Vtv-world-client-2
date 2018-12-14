@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+declare var videojs: any;
+import {Component, OnChanges, OnDestroy, OnInit, AfterViewInit} from '@angular/core';
 import {Select2OptionData} from 'ng2-select2';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -13,7 +14,7 @@ import {environment} from '../../../../environments/environment.prod';
     templateUrl: './create-video.component.html',
     styleUrls: ['./create-video.component.css']
 })
-export class CreateVideoComponent implements OnInit {
+export class CreateVideoComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
     f: FormGroup;
     subScription: Subscription;
     environment: any;
@@ -21,10 +22,12 @@ export class CreateVideoComponent implements OnInit {
     public currentValue: any;
     public category: any;
     receiveVideoInsert: any;
-    CMSPreviewVideo: string;
     insertVideo = false;
+    videoInsertUrl: string;
+    idVideoInsert: number;
     contentVideo: string;
     thumbsVideo: any;
+    videoJSplayer: any;
     constructor(
         private formBuilder: FormBuilder,
         private videoService: VideoService,
@@ -40,6 +43,7 @@ export class CreateVideoComponent implements OnInit {
             description: [null, [Validators.required]],
             publish_at: [null, null],
             sub_category: [null, null],
+            thumbnails : [null, [Validators.required]],
             tags: [null, null],
             source: [null, null],
             content: [null, [Validators.required]],
@@ -76,14 +80,30 @@ export class CreateVideoComponent implements OnInit {
             }
         });
     }
-    eventReceiveVideoInsert($event) {
+    async eventReceiveVideoInsert($event) {
         this.receiveVideoInsert = $event;
         this.insertVideo = true;
         this.contentVideo = this.receiveVideoInsert.path;
+        this.videoInsertUrl = this.receiveVideoInsert.path;
+        this.idVideoInsert = this.receiveVideoInsert.id;
         this.thumbsVideo = Object.keys(this.receiveVideoInsert.thumbnails).map(key => ({type: key, value: this.receiveVideoInsert.thumbnails[key]}));
-        console.log(this.thumbsVideo);
-        this.CMSPreviewVideo = '<video controls style="max-width:100%">' +
-            '<source src="' + environment.storage_url + this.receiveVideoInsert.path + '" type="video/mp4">' +
-            '</video>';
+        await this.loadPlayer();
+    }
+    loadPlayer() {
+        const _this = this;
+        setTimeout(function(){
+            _this.videoJSplayer = videojs(document.getElementById('preview_video_content' + _this.idVideoInsert), {}, function() {
+                this.play();
+            });
+        }, 1);
+    }
+    ngAfterViewInit() {
+        this.videoJSplayer.dispose();
+    }
+    ngOnChanges() {
+        this.videoJSplayer.dispose();
+    }
+    ngOnDestroy() {
+        this.videoJSplayer.dispose();
     }
 }

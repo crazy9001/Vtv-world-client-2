@@ -23,8 +23,8 @@ export class MediaVideoComponent implements OnInit {
         private pusherService: PusherService
     ) {
         this.pusherService.channel.bind('App\\Events\\GenerateThumbPusherEvent', data => {
-            console.log(data.message);
-            if (data.message === 'success') {
+            console.log(data);
+            if (data.success === true) {
                 this.progressGenthumb = true;
             }
         });
