@@ -50,4 +50,9 @@ export class MediaVideoComponent implements OnInit {
         this.messageEvent.emit(this.selected);
         jQuery('#__mediaUploadVideo').modal('hide');
     }
+
+
+
+
+
 }
