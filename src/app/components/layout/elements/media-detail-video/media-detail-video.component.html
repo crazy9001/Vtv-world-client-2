@@ -11,7 +11,7 @@
                     <a class="media-play-button" (click)="eventPlayPreview()"></a>
                 </div>
                 <div *ngIf="playVideo">
-                    <video *ngIf="videoUrl" id="video_player_id_{{ id }}"
+                    <video *ngIf="videoUrl" #videoTest id="video_player_id_{{ id }}"
                             class="video-js vjs-big-play-centered"
                             controls
                             width="319"
