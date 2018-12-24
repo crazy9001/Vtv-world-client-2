@@ -18,7 +18,6 @@ import { Select2Module } from 'ng2-select2';
 import {SeoInfomationComponent} from '../../components/layout/elements/seo-infomation/seo-infomation.component';
 import {VideoContentComponent} from '../../components/layout/elements/video-content/video-content.component';
 import {DetailVideoComponent} from '../../components/video/detail-video/detail-video.component';
-import {MediaComponent} from '../../components/layout/elements/media/media.component';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
@@ -29,6 +28,7 @@ import {MediaVideoComponent} from '../../components/layout/elements/media-video/
 import {SanitizeHtml} from '../../pipe/sanitizehtml.pipe';
 import {MediaDetailVideoComponent} from '../../components/layout/elements/media-detail-video/media-detail-video.component';
 import {PusherService} from '../../services/pusher.service';
+import {PreviewVideoComponent} from '../../components/layout/elements/preview-video/preview-video.component';
 
 const token = localStorage.getItem('token');
 console.log(token);
@@ -66,11 +66,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         SeoInfomationComponent,
         VideoContentComponent,
         DetailVideoComponent,
-        MediaComponent,
         MediaImageComponent,
         MediaVideoComponent,
         SanitizeHtml,
-        MediaDetailVideoComponent
+        MediaDetailVideoComponent,
+        PreviewVideoComponent
     ],
     providers: [
         VideoService,

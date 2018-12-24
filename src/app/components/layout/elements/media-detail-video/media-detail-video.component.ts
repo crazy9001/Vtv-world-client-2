@@ -30,7 +30,8 @@ export class MediaDetailVideoComponent implements OnInit, OnChanges, OnDestroy {
     ngOnChanges() {
         this.playVideo = false;
     }
-    async eventPlayPreview() {
+    eventPlayPreview() {
+        const __this = this;
         this.playVideo = true;
         this.id = this.video.id;
         this.videoUrl = environment.storage_url + this.video.path;
@@ -39,13 +40,15 @@ export class MediaDetailVideoComponent implements OnInit, OnChanges, OnDestroy {
             .filter(data => data.first)
             .map(data => data.first)
             .subscribe(element => {
-                this.videoJSplayer = videojs(element.nativeElement, {}, () => {
+                __this.videoJSplayer = videojs(element.nativeElement, {}, () => {
                     (element.nativeElement as HTMLVideoElement).play();
                 });
         });
     }
 
     ngOnDestroy() {
-        this.videoJSplayer.dispose();
+        if ( this.videoJSplayer) {
+            this.videoJSplayer.dispose();
+        }
     }
 }

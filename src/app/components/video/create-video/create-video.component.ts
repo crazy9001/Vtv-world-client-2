@@ -1,5 +1,5 @@
 declare var videojs: any;
-import {Component, OnChanges, OnDestroy, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ViewChildren, QueryList, ElementRef} from '@angular/core';
 import {Select2OptionData} from 'ng2-select2';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -14,7 +14,10 @@ import {environment} from '../../../../environments/environment.prod';
     templateUrl: './create-video.component.html',
     styleUrls: ['./create-video.component.css']
 })
-export class CreateVideoComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+export class CreateVideoComponent implements OnInit {
+
+    @ViewChildren('previewVideoCreate') previewVideoCreate: QueryList<ElementRef>;
+
     f: FormGroup;
     subScription: Subscription;
     environment: any;
@@ -80,27 +83,19 @@ export class CreateVideoComponent implements OnInit, OnDestroy, OnChanges, After
             }
         });
     }
-    async eventReceiveVideoInsert($event) {
+    eventReceiveVideoInsert($event) {
         this.receiveVideoInsert = $event;
         this.insertVideo = true;
         this.contentVideo = this.receiveVideoInsert.path;
         this.videoInsertUrl = this.receiveVideoInsert.path;
         this.idVideoInsert = this.receiveVideoInsert.id;
         this.thumbsVideo = Object.keys(this.receiveVideoInsert.thumbnails).map(key => ({type: key, value: this.receiveVideoInsert.thumbnails[key]}));
-        await this.loadPlayer();
-    }
-    loadPlayer() {
-        const _this = this;
-        setTimeout(function(){
-            _this.videoJSplayer = videojs(document.getElementById('preview_video_content' + _this.idVideoInsert), {}, function() {
-                this.play();
+        this.previewVideoCreate.changes
+            .filter(data => data.first)
+            .map(data => data.first)
+            .subscribe(element => {
+                this.videoJSplayer = videojs(element.nativeElement);
             });
-        }, 1);
     }
-    ngAfterViewInit() {
-    }
-    ngOnChanges() {
-    }
-    ngOnDestroy() {
-    }
+
 }
