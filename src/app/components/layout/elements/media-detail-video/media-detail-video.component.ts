@@ -1,6 +1,9 @@
 declare var videojs: any;
-import {Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
+import {Component, OnInit, Input, OnChanges, OnDestroy, ViewChildren, QueryList, ElementRef} from '@angular/core';
 import {environment} from './../../../../../environments/environment.prod';
+
+import 'rxjs/operators/filter';
+import 'rxjs/operators/map';
 
 @Component({
     selector: 'app-media-detail-video',
@@ -11,6 +14,9 @@ import {environment} from './../../../../../environments/environment.prod';
 export class MediaDetailVideoComponent implements OnInit, OnChanges, OnDestroy {
     @Input() video;
     @Input() playVideo;
+
+    @ViewChildren('videoTest') videoTest: QueryList<ElementRef>;
+
     environment: any;
     videoJSplayer: any;
     videoUrl: string;
@@ -28,16 +34,17 @@ export class MediaDetailVideoComponent implements OnInit, OnChanges, OnDestroy {
         this.playVideo = true;
         this.id = this.video.id;
         this.videoUrl = environment.storage_url + this.video.path;
-        await this.loadPlayer();
+
+        this.videoTest.changes
+            .filter(data => data.first)
+            .map(data => data.first)
+            .subscribe(element => {
+                this.videoJSplayer = videojs(element.nativeElement, {}, () => {
+                    (element.nativeElement as HTMLVideoElement).play();
+                });
+        });
     }
-    loadPlayer() {
-        const _this = this;
-        setTimeout(function(){
-            _this.videoJSplayer = videojs(document.getElementById('video_player_id_' + _this.id), {}, function() {
-                this.play();
-            });
-        }, 1);
-    }
+
     ngOnDestroy() {
         this.videoJSplayer.dispose();
     }

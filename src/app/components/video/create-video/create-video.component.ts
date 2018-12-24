@@ -98,12 +98,9 @@ export class CreateVideoComponent implements OnInit, OnDestroy, OnChanges, After
         }, 1);
     }
     ngAfterViewInit() {
-        this.videoJSplayer.dispose();
     }
     ngOnChanges() {
-        this.videoJSplayer.dispose();
     }
     ngOnDestroy() {
-        this.videoJSplayer.dispose();
     }
 }
