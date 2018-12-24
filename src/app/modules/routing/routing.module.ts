@@ -9,43 +9,44 @@ import {DraftComponent} from '../../components/video/draft/draft.component';
 import {CreateVideoComponent} from '../../components/video/create-video/create-video.component';
 import {DetailVideoComponent} from '../../components/video/detail-video/detail-video.component';
 
-const appRoutes: Routes = [
-    {
-        path: 'DefaultV1',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
-        component: LayoutComponent,
-        children: [
-            {
-                path: '',
-                component: DashboardComponent
-            },
-            {
-                path: 'Video',
-                component: VideoComponent,
-                children: [
-                    {
-                        path: 'Draft',
-                        component: DraftComponent
-                    },
-                    {
-                        path: 'Create',
-                        component: CreateVideoComponent
-                    },
-                    {
-                        path: 'Details/:id',
-                        component: DetailVideoComponent
-                    }
-                ]
-            }
-        ]
-    }
-];
-
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forChild(appRoutes),
+        RouterModule.forChild([
+            {
+                path: 'DefaultV1',
+                component: LayoutComponent,
+                canActivate: [AuthGuard],
+                canActivateChild: [AuthGuard],
+                children: [
+                    {
+                        path: '',
+                        component: DashboardComponent
+                    },
+                    {
+                        path: 'Video',
+                        component: VideoComponent,
+                        children: [
+                            {
+                                path: 'Draft',
+                                component: DraftComponent
+                            },
+                            {
+                                path: 'Create',
+                                component: CreateVideoComponent
+                            },
+                            {
+                                path: 'Details/:id',
+                                component: DetailVideoComponent
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]),
+    ],
+    exports: [
+        RouterModule
     ],
     declarations: []
 })
