@@ -4,17 +4,17 @@
             <div class="qsFilter pull-left">
                 <div class="btn-group input-prepend">
                     <div class="form-filter-inline">
-                        <button type="button" id="appendedInputButtons" class="btn">Filter</button>
+                        <button type="button" id="appendedInputButtons" class="btn">Tìm kiếm</button>
                         <form name="other_filter" action="videos.php" class="form-inline">
                             <select name="URL"
                                     onchange="window.parent.location=this.form.URL.options[this.form.URL.selectedIndex].value">
-                                <option value="videos.php">by videos ...</option>
+                                <option value="videos.php">Loại ...</option>
                             </select>
                         </form>
                         <form name="source_filter" action="videos.php" method="get" class="form-inline">
                             <input type="hidden" name="filter" value="source">
                             <select name="fv" onchange="submit()">
-                                <option value="">by video source...</option>
+                                <option value="">Trạng thái</option>
                                 <option value="70">123video.nl</option>
                                 <option value="47">5min</option>
                             </select>
@@ -23,7 +23,7 @@
                             <input type="hidden" name="filter" value="category">
                             <select name="fv" id="select_move_to_category" class="inline last-filter"
                                     onchange="submit()">
-                                <option value="" selected="selected">by category..</option>
+                                <option value="" selected="selected">Chuyên mục</option>
                             </select>
                         </form>
                     </div><!-- .form-filter-inline -->
@@ -36,8 +36,8 @@
                 <form name="search" action="videos.php" method="post" class="form-search-listing form-inline">
                     <div class="input-append">
                         <input name="keywords" type="text" value="" size="30"
-                               class="search-query search-quez input-medium placeholder" placeholder="Enter keyword"
-                               id="form-search-input">
+                               class="search-query search-quez input-medium placeholder" placeholder="Từ khóa"
+                               id="form-search-input"/>
                         <button type="submit" name="submit" class="btn" value="Search" id="submitFind">
                             <i class="icon-search findIcon"></i>
                         </button>
@@ -62,7 +62,7 @@
                         <div class="pull-right media-mini text-center text-muted">
                             <small class="category-video">{{ video.category && video.category.name ? video.category.name : ''}}</small>
                         </div>
-                        <a [routerLink]="['Details', video.id]" class="title-video">
+                        <a [routerLink]="['../Detail', video.id]" class="title-video">
                             {{ video.title }}
                         </a>
                         <small class="block m-b-5">

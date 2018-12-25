@@ -29,14 +29,14 @@ import {DetailVideoComponent} from '../../components/video/detail-video/detail-v
                         children: [
                             {
                                 path: 'Draft',
-                                component: DraftComponent
+                                component: DraftComponent,
                             },
                             {
                                 path: 'Create',
                                 component: CreateVideoComponent
                             },
                             {
-                                path: 'Details/:id',
+                                path: 'Detail/:id',
                                 component: DetailVideoComponent
                             }
                         ]

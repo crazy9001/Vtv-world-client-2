@@ -13,14 +13,13 @@ export class VideoModel {
     slug: string;
     description: string;
     category_id: number;
-    element_id: number;
-    content_id: number;
-    seo_id: number;
+    seo: object;
     source: string;
     status: number;
     highlight: number;
     thumbnails: string;
     created_at: string;
-    element: any;
+    element: object;
     category: object;
+    content: object;
 }

@@ -195,14 +195,6 @@ content h2 a.label {
     padding: 5px 10px;
     border-color: #ccc;
     outline: 0;
-    background-color: #f5f5f5;
-    *background-color: #f4f4f4;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#f4f4f4));
-    background-image: -webkit-linear-gradient(top, #fff, #f4f4f4);
-    background-image: -o-linear-gradient(top, #fff, #f4f4f4);
-    background-image: linear-gradient(to bottom, #fff, #f4f4f4);
-    background-image: -moz-linear-gradient(top, #fff, #f4f4f4);
-    background-repeat: repeat-x;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -213,7 +205,7 @@ content h2 a.label {
     -webkit-box-shadow: none !important;
 }
 .form-filter-inline .btn {
-    height: 30px;
+    height: 33px;
 }
 .form-filter-inline button, .form-filter-inline form {
     float: left;
@@ -289,9 +281,9 @@ content h2 a.label {
 .form-search-listing input, .form-search-listing select, .form-search-listing button {
     font-size: 12px;
     line-height: 1em;
-    padding: 0;
     height: 30px;
     color: #666;
+    padding: 0 10px;
 }
 .input-append .add-on:last-child, .input-append .btn:last-child {
     -webkit-border-radius: 0 3px 3px 0;

@@ -94,7 +94,9 @@ export class CreateVideoComponent implements OnInit {
             .filter(data => data.first)
             .map(data => data.first)
             .subscribe(element => {
-                this.videoJSplayer = videojs(element.nativeElement);
+                this.previewVideoCreate = videojs(element.nativeElement, {}, () => {
+                    (element.nativeElement as HTMLVideoElement).play();
+                });
             });
     }
 

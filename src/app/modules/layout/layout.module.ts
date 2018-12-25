@@ -31,7 +31,7 @@ import {PusherService} from '../../services/pusher.service';
 import {PreviewVideoComponent} from '../../components/layout/elements/preview-video/preview-video.component';
 
 const token = localStorage.getItem('token');
-console.log(token);
+
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
     chunking: true,

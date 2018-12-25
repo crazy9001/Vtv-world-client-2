@@ -21,11 +21,16 @@ export class AuthService {
             .do(data => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', (JSON.stringify(data.user)));
+                localStorage.setItem('role', (data.user.roles[0].name));
             });
     }
 
     getUser(): UserModel {
         return localStorage.getItem('user') ? JSON.parse((localStorage.getItem('user'))) : null;
+    }
+
+    getRoleUser() {
+        return localStorage.getItem('role') ? localStorage.getItem('role') : null;
     }
 
     logout(): void {

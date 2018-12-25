@@ -6,10 +6,12 @@ import 'rxjs/add/operator/do';
 import {Observable} from 'rxjs/Observable';
 import {PaginatedVideo} from './../model/video-paginate.model';
 import {NgProgress} from 'ngx-progressbar';
+import {VideoModel} from '../model/video.model';
 
 @Injectable()
 export class VideoService {
     private apiVideoDraft = '/video/draft';
+    private apiVideoDetail = '/video/';
     constructor(
         private httpClient: HttpClient,
         public progressService: NgProgress
@@ -43,6 +45,16 @@ export class VideoService {
             .then((response) => {
                 this.progressService.done();
                 return response as PaginatedVideo;
+            })
+            .catch(this.handleError);
+    }
+
+    getDetailVideoById(id) {
+        return this.httpClient.get(`${environment.api_url}` + this.apiVideoDetail + id)
+            .toPromise()
+            .then((response) => {
+                this.progressService.done();
+                return response as VideoModel;
             })
             .catch(this.handleError);
     }
