@@ -1,5 +1,5 @@
 declare var videojs: any;
-import {Component, OnInit, ViewChildren, QueryList, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChildren, QueryList, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
 import {Select2OptionData} from 'ng2-select2';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -14,7 +14,7 @@ import {environment} from '../../../../environments/environment.prod';
     templateUrl: './create-video.component.html',
     styleUrls: ['./create-video.component.css']
 })
-export class CreateVideoComponent implements OnInit {
+export class CreateVideoComponent implements OnInit, OnChanges {
 
     @ViewChildren('previewVideoCreate') previewVideoCreate: QueryList<ElementRef>;
 
@@ -38,6 +38,10 @@ export class CreateVideoComponent implements OnInit {
         public progressService: NgProgress
     ) {
         this.environment = environment;
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes['videoInsertUrl'].currentValue);
     }
 
     ngOnInit() {

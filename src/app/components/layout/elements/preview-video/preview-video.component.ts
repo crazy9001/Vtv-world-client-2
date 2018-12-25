@@ -1,50 +1,54 @@
-declare var videojs: any;
-import {Component, OnInit, Input, ViewChildren, QueryList, ElementRef, OnChanges, AfterViewInit, OnDestroy} from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    OnChanges,
+    SimpleChanges
+} from '@angular/core';
 import {environment} from '../../../../../environments/environment.prod';
+
+declare var videojs: any;
 
 @Component({
     selector: 'app-preview-video',
     templateUrl: './preview-video.component.html',
     styleUrls: ['./preview-video.component.css']
 })
-export class PreviewVideoComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-    @Input() videoUrl;
-    @ViewChildren('videoTest') videoTest: QueryList<ElementRef>;
-    environment: any;
-    videoJSplayer: any;
+export class PreviewVideoComponent implements OnInit, OnChanges {
+    private _videoUrl = '';
+    @Input() set videoUrl(value: string) {
+        this._videoUrl = value;
+    }
+
+    get videoUrl() {
+        return this._videoUrl;
+    }
 
     constructor() {
-        this.environment = environment;
     }
 
     ngOnInit() {
-
-    }
-    ngOnChanges() {
-        if (this.videoJSplayer) {
-            this.test();
+        if (this.videoUrl && this.videoUrl !== '') {
+            this.loadVideo(this.videoUrl);
         }
     }
 
-    ngAfterViewInit() {
-        const element = document.getElementById('preview_video_content');
-        this.videoJSplayer = videojs(element, {}, () => {
-            (element as HTMLVideoElement).play();
+    ngOnChanges(changes: SimpleChanges) {
+        if (!changes['videoUrl'].isFirstChange()) {
+            const url = changes['videoUrl'].currentValue;
+            this.loadVideo(url);
+        }
+    }
+
+    private loadVideo(url?: string) {
+        const player = videojs('preview_video_content', {
+            controls: true,
+            sources: [{src: '', type: 'video/mp4'}],
         });
-    }
-    ngOnDestroy() {
-        console.log(this.videoJSplayer);
-        this.videoJSplayer.dispose();
-    }
-    test() {
-        this.videoTest.changes
-            .filter(data => data.first)
-            .map(data => data.first)
-            .subscribe(element => {
-                console.log(element);
-                this.videoJSplayer = videojs(element.nativeElement, {}, () => {
-                    (element.nativeElement as HTMLVideoElement).play();
-                });
-            });
+        const sources = [{'src': `${environment.storage_url}${url}`}];
+        player.pause();
+        player.src(sources);
+        player.load();
+        player.play();
     }
 }
