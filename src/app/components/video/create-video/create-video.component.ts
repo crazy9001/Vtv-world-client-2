@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {VideoService} from '../../../services/video.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment.prod';
+import {CategoryService} from '../../../services/category.service';
 
 @Component({
     selector: 'app-create-video',
@@ -26,9 +27,11 @@ export class CreateVideoComponent implements OnInit, OnChanges {
     idVideoInsert: number;
     contentVideo: string;
     thumbsVideo: any;
+    listCategoryByUser: any;
     constructor(
         private formBuilder: FormBuilder,
         private videoService: VideoService,
+        private categoryService: CategoryService,
         private routerService: Router,
         public progressService: NgProgress
     ) {
@@ -53,16 +56,9 @@ export class CreateVideoComponent implements OnInit, OnChanges {
             seo_keywords: '',
             seo_description: ''
         });
-        this.CategoryData = [
-            {
-                id: '1',
-                text: 'Xã hội'
-            },
-            {
-                id: '2',
-                text: 'Chính sách và cuộc sống'
-            }
-        ];
+        this.listCategoryByUser = this.categoryService.getVideoCategoryByUser();
+        console.log( this.listCategoryByUser);
+        this.CategoryData = this.listCategoryByUser;
         this.currentValue = null;
     }
     valueChanged($evt) {

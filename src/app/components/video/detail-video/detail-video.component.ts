@@ -6,6 +6,7 @@ import {NgProgress} from 'ngx-progressbar';
 import {VideoModel} from '../../../model/video.model';
 import {environment} from '../../../../environments/environment.prod';
 import {PlayerService} from '../../../services/player.service';
+import {CategoryService} from '../../../services/category.service';
 
 @Component({
     selector: 'app-detail-video',
@@ -37,7 +38,8 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
         private formBuilder: FormBuilder,
         private videoService: VideoService,
         public progressService: NgProgress,
-        public playerService: PlayerService
+        public playerService: PlayerService,
+        public categoryService: CategoryService
     ) {
         this.environment = environment;
     }
