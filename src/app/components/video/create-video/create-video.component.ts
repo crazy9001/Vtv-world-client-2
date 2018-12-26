@@ -1,5 +1,4 @@
-declare var videojs: any;
-import {Component, OnInit, ViewChildren, QueryList, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {Select2OptionData} from 'ng2-select2';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -15,9 +14,6 @@ import {environment} from '../../../../environments/environment.prod';
     styleUrls: ['./create-video.component.css']
 })
 export class CreateVideoComponent implements OnInit, OnChanges {
-
-    @ViewChildren('previewVideoCreate') previewVideoCreate: QueryList<ElementRef>;
-
     f: FormGroup;
     subScription: Subscription;
     environment: any;
@@ -30,7 +26,6 @@ export class CreateVideoComponent implements OnInit, OnChanges {
     idVideoInsert: number;
     contentVideo: string;
     thumbsVideo: any;
-    videoJSplayer: any;
     constructor(
         private formBuilder: FormBuilder,
         private videoService: VideoService,
@@ -94,14 +89,6 @@ export class CreateVideoComponent implements OnInit, OnChanges {
         this.videoInsertUrl = this.receiveVideoInsert.path;
         this.idVideoInsert = this.receiveVideoInsert.id;
         this.thumbsVideo = Object.keys(this.receiveVideoInsert.thumbnails).map(key => ({type: key, value: this.receiveVideoInsert.thumbnails[key]}));
-        this.previewVideoCreate.changes
-            .filter(data => data.first)
-            .map(data => data.first)
-            .subscribe(element => {
-                this.previewVideoCreate = videojs(element.nativeElement, {}, () => {
-                    (element.nativeElement as HTMLVideoElement).play();
-                });
-            });
     }
 
 }

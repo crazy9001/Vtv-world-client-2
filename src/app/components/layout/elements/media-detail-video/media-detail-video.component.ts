@@ -1,6 +1,7 @@
 declare var videojs: any;
 import {Component, OnInit, Input, OnChanges, OnDestroy, ViewChildren, QueryList, ElementRef} from '@angular/core';
 import {environment} from './../../../../../environments/environment.prod';
+import {PlayerService} from '../../../../services/player.service';
 
 import 'rxjs/operators/filter';
 import 'rxjs/operators/map';
@@ -21,7 +22,9 @@ export class MediaDetailVideoComponent implements OnInit, OnChanges, OnDestroy {
     videoJSplayer: any;
     videoUrl: string;
     id: number;
-    constructor() {
+    constructor(
+        public playerService: PlayerService
+    ) {
     }
 
     ngOnInit() {

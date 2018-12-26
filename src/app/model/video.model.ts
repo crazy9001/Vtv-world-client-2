@@ -21,5 +21,5 @@ export class VideoModel {
     created_at: string;
     element: object;
     category: object;
-    content: object;
+
 }

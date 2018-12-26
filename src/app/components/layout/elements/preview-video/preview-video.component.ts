@@ -3,18 +3,16 @@ import {
     OnInit,
     Input,
     OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    OnDestroy
 } from '@angular/core';
-import {environment} from '../../../../../environments/environment.prod';
-
-declare var videojs: any;
-
+import {PlayerService} from '../../../../services/player.service';
 @Component({
     selector: 'app-preview-video',
     templateUrl: './preview-video.component.html',
     styleUrls: ['./preview-video.component.css']
 })
-export class PreviewVideoComponent implements OnInit, OnChanges {
+export class PreviewVideoComponent implements OnInit, OnChanges, OnDestroy {
     private _videoUrl = '';
     @Input() set videoUrl(value: string) {
         this._videoUrl = value;
@@ -24,31 +22,23 @@ export class PreviewVideoComponent implements OnInit, OnChanges {
         return this._videoUrl;
     }
 
-    constructor() {
+    constructor(
+        private playerService: PlayerService,
+    ) {
     }
 
     ngOnInit() {
         if (this.videoUrl && this.videoUrl !== '') {
-            this.loadVideo(this.videoUrl);
+            this.playerService.initPlayer('preview_video_content', this.videoUrl);
         }
     }
 
     ngOnChanges(changes: SimpleChanges) {
         if (!changes['videoUrl'].isFirstChange()) {
-            const url = changes['videoUrl'].currentValue;
-            this.loadVideo(url);
+            this.playerService.initPlayer('preview_video_content', changes['videoUrl'].currentValue);
         }
     }
-
-    private loadVideo(url?: string) {
-        const player = videojs('preview_video_content', {
-            controls: true,
-            sources: [{src: '', type: 'video/mp4'}],
-        });
-        const sources = [{'src': `${environment.storage_url}${url}`}];
-        player.pause();
-        player.src(sources);
-        player.load();
-        player.play();
+    ngOnDestroy() {
+        this.playerService.dispose();
     }
 }

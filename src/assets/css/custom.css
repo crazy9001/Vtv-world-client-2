@@ -455,7 +455,6 @@ textarea.video_seo_description {
     height: 110px;
     overflow: hidden;
     width: 132px;
-    background: url(../images/VMVideoThumbLoading.gif) no-repeat center center;
     border: solid 1px #ccc;
 }
 #CMSVideoEditItemAvatarChoose img {
@@ -464,5 +463,9 @@ textarea.video_seo_description {
 }
 #CMSVideoEditItemAvatarChoose input[type=radio] {
     border-radius: 50% !important;
+}
+.vjs-default-skin.vjs-paused .vjs-big-play-button
+{
+    display: none !important;
 }
 

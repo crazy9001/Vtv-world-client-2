@@ -47,7 +47,6 @@ export class MediaVideoComponent implements OnInit {
         this.selected = item;
     }
     CMSInsertVideo() {
-        console.log(this.selected);
         this.messageEvent.emit(this.selected);
         this.loadDetail = false;
         jQuery('#__mediaUploadVideo').modal('hide');

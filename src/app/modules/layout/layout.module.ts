@@ -29,6 +29,7 @@ import {SanitizeHtml} from '../../pipe/sanitizehtml.pipe';
 import {MediaDetailVideoComponent} from '../../components/layout/elements/media-detail-video/media-detail-video.component';
 import {PusherService} from '../../services/pusher.service';
 import {PreviewVideoComponent} from '../../components/layout/elements/preview-video/preview-video.component';
+import {PlayerService} from '../../services/player.service';
 
 const token = localStorage.getItem('token');
 
@@ -75,7 +76,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     providers: [
         VideoService,
         MediaService,
-        PusherService
+        PusherService,
+        PlayerService
     ]
 })
 export class LayoutModule {
