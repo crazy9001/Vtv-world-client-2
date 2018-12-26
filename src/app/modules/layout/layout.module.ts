@@ -30,6 +30,7 @@ import {MediaDetailVideoComponent} from '../../components/layout/elements/media-
 import {PusherService} from '../../services/pusher.service';
 import {PreviewVideoComponent} from '../../components/layout/elements/preview-video/preview-video.component';
 import {PlayerService} from '../../services/player.service';
+import {CategoryService} from '../../services/category.service';
 
 const token = localStorage.getItem('token');
 
@@ -77,7 +78,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         VideoService,
         MediaService,
         PusherService,
-        PlayerService
+        PlayerService,
+        CategoryService
     ]
 })
 export class LayoutModule {

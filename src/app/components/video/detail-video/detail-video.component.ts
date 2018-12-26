@@ -82,4 +82,8 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
     eventReceiveVideoInsert($event) {
         this.video.content = $event.path;
     }
+
+    onSubmitSaveVideo() {
+
+    }
 }
