@@ -11,6 +11,7 @@ import {VideoModel} from '../model/video.model';
 @Injectable()
 export class VideoService {
     private apiVideoDraft = '/video/draft';
+    private apiVideoWaitingEditor = '/video/waiting/editor';
     private apiVideoDetail = '/video/';
     private apiChangeVideoToEditor = '/video/to/editor';
     constructor(
@@ -72,6 +73,17 @@ export class VideoService {
     getDraftVideo(): Promise<PaginatedVideo> {
         this.progressService.start();
         return this.httpClient.get(`${environment.api_url}` + this.apiVideoDraft)
+            .toPromise()
+            .then((response) => {
+                this.progressService.done();
+                return response as PaginatedVideo;
+            })
+            .catch(this.handleError);
+    }
+
+    getWaitingEditorVideo(): Promise<PaginatedVideo> {
+        this.progressService.start();
+        return this.httpClient.get(`${environment.api_url}` + this.apiVideoWaitingEditor)
             .toPromise()
             .then((response) => {
                 this.progressService.done();

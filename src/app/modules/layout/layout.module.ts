@@ -31,6 +31,7 @@ import {PusherService} from '../../services/pusher.service';
 import {PreviewVideoComponent} from '../../components/layout/elements/preview-video/preview-video.component';
 import {PlayerService} from '../../services/player.service';
 import {CategoryService} from '../../services/category.service';
+import {WaitingEditorComponent} from '../../components/video/waiting-editor/waiting-editor.component';
 
 const token = localStorage.getItem('token');
 
@@ -72,7 +73,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         MediaVideoComponent,
         SanitizeHtml,
         MediaDetailVideoComponent,
-        PreviewVideoComponent
+        PreviewVideoComponent,
+        WaitingEditorComponent
     ],
     providers: [
         VideoService,

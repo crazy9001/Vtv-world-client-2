@@ -8,6 +8,7 @@ import {VideoComponent} from '../../components/video/video.component';
 import {DraftComponent} from '../../components/video/draft/draft.component';
 import {CreateVideoComponent} from '../../components/video/create-video/create-video.component';
 import {DetailVideoComponent} from '../../components/video/detail-video/detail-video.component';
+import {WaitingEditorComponent} from '../../components/video/waiting-editor/waiting-editor.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,10 @@ import {DetailVideoComponent} from '../../components/video/detail-video/detail-v
                             {
                                 path: 'Draft',
                                 component: DraftComponent,
+                            },
+                            {
+                                path: 'WaitingEditor',
+                                component: WaitingEditorComponent,
                             },
                             {
                                 path: 'Create',

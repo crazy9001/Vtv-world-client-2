@@ -124,9 +124,13 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
     onSubmitVideoToEditor() {
         const video = {
             id: this.f.value.id
-        }
+        };
         this.videoService.changeVideoToEditor(video).then( res => {
-            console.log(res);
+            this.routerService.navigate(['DefaultV1/Video/Draft']);
+        }, (errorRes: HttpErrorResponse) => {
+            if (errorRes.status === 401) {
+                this.progressService.done();
+            }
         });
     }
 }
