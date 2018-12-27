@@ -396,7 +396,7 @@ textarea.video_seo_description {
 }
 .VideoUploadInputWrapper{
     margin: 10px;
-    width: 100%;
+   /* width: 100%;*/
 }
 .ims-video-upload-control-wrapper {
     width: 100%;
@@ -467,5 +467,11 @@ textarea.video_seo_description {
 .vjs-default-skin.vjs-paused .vjs-big-play-button
 {
     display: none !important;
+}
+.list-video-item small {
+    margin-bottom: 1px !important;
+}
+.btn-group button {
+    margin-left: 5px !important;
 }
 

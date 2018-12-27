@@ -6,9 +6,11 @@
                 <h4>Thông tin video</h4>
                 <div class="control-group">
                     <label class="control-label">Tiêu đề</label>
-                    <input formControlName="title" *ngIf="video" [(ngModel)]="video.title" required="" type="text" id="must" class="form-control">
+                    <input formControlName="title" *ngIf="video" [(ngModel)]="video.title" required="" type="text" class="form-control">
+                    <input formControlName="id" *ngIf="video" [(ngModel)]="video.id" required="" type="hidden" class="form-control">
                 </div>
-                <div class="control-group" id="description_video">
+                <div class="control-group"
+                     id="description_video">
                     <label class="control-label">Mô tả ngắn</label>
                     <textarea formControlName="description" required="" class="form-control video_description" *ngIf="video" [(ngModel)]="video.description">
                     </textarea>
@@ -19,8 +21,7 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">Chuyên mục chính</label>
-                    <select2 name="category" [data]="CategoryData" [value]="currentValue"
-                             (valueChanged)="valueChanged($event)"
+                    <select2 name="category" [data]="CategoryData" [value]="currentValue" (valueChanged)="valueChanged($event)"
                              [options]="{ placeholder: 'Chọn chuyên mục' }"></select2>
                 </div>
                 <div class="control-group">
@@ -37,7 +38,7 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">Video nổi bật</label>
-                    <input formControlName="highlight" type="checkbox" name="checkboxA">
+                    <input formControlName="highlight" [ngModel]="false" type="checkbox" name="checkboxA">
                 </div>
             </div>
         </div>
@@ -78,18 +79,50 @@
         <div class="clearfix"></div>
         <div id="stack-controls" class="list-controls scroll-to-fixed-fixed">
             <div class="btn-toolbar">
-                <div class="btn-group">
+                <div class="btn-group" *ngIf="video && video.status == 'DRAFT'">
+
                     <button name="cancel" type="button" value="Cancel" onclick="location.href='videos.php'"
                             class="btn btn-small btn-normal btn-strong">
                         <i class="fa fa-arrow-left"></i> Quay lại
                     </button>
-                </div>
-                <div class="btn-group">
+
+                    <button name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong"
+                            [disabled]="f.invalid" (click)="onSubmitVideoToEditor()">
+                        <i class="fa fa-upload"></i> Gửi biên tập
+                    </button>
+
+                    <button name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong"
+                            [disabled]="f.invalid" (click)="onSubmitVideoToEditor()">
+                        <i class="fa fa-upload"></i> Gửi xuất bản
+                    </button>
+
+                    <button *ngIf="role === 'Secretary'" name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong"
+                            [disabled]="f.invalid" (click)="onSubmitSaveVideo()">
+                        <i class="fa fa-arrow-circle-o-up"></i> Xuất bản
+                    </button>
+
                     <button name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong"
                             [disabled]="f.invalid" (click)="onSubmitSaveVideo()">
                         <i class="fa fa-save"></i> Lưu video
                     </button>
                 </div>
+
+                <div class="btn-group" *ngIf="video && video.status == 'WAITING_EDITOR'">
+
+                    <button *ngIf="role === 'Secretary'" name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong"
+                            [disabled]="f.invalid" (click)="onSubmitSaveVideo()">
+                        <i class="fa fa-arrow-circle-o-up"></i> Xuất bản
+                    </button>
+
+                    <button name="submit" type="submit" value="Save" class="btn btn-info btn-small btn-strong"
+                            [disabled]="f.invalid" (click)="onSubmitSaveVideo()">
+                        <i class="fa fa-upload"></i> Gửi xuất bản
+                    </button>
+
+
+
+                </div>
+
             </div>
         </div>
     </div>

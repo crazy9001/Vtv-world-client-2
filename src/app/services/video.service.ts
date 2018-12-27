@@ -12,6 +12,7 @@ import {VideoModel} from '../model/video.model';
 export class VideoService {
     private apiVideoDraft = '/video/draft';
     private apiVideoDetail = '/video/';
+    private apiChangeVideoToEditor = '/video/to/editor';
     constructor(
         private httpClient: HttpClient,
         public progressService: NgProgress
@@ -38,6 +39,36 @@ export class VideoService {
             });
     }
 
+    update( video: {
+        id: number,
+        title: string,
+        description: string,
+        content: string,
+        category_id: number,
+        source: string,
+        status: string,
+        highlight: number,
+        thumbnails: string,
+        publish_at: string,
+        seo_title: string,
+        seo_description: string,
+        seo_keywords: string
+    } ) {
+        return this.httpClient.put<any>(`${environment.api_url}/video/${video.id}`, video)
+            .do(data => {
+                console.log(data);
+            });
+    }
+    changeVideoToEditor( video: {
+        id: number,
+    }) {
+        return this.httpClient.post<any>(`${environment.api_url}` + this.apiChangeVideoToEditor, video)
+            .toPromise()
+            .then((response) => {
+                this.progressService.done();
+                return response;
+            });
+    }
     getDraftVideo(): Promise<PaginatedVideo> {
         this.progressService.start();
         return this.httpClient.get(`${environment.api_url}` + this.apiVideoDraft)

@@ -43,7 +43,7 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">Video nổi bật</label>
-                    <input type="checkbox" name="checkboxA" style="width: 10px">
+                    <input type="checkbox" formControlName="highlight" [ngModel]="false" style="width: 10px">
                 </div>
             </div>
         </div>
@@ -59,9 +59,9 @@
                             <input type="hidden" formControlName="content" [ngModel]="contentVideo"  class="form-control">
                             <app-media-video (messageEvent)="eventReceiveVideoInsert($event)"></app-media-video>
                         </div>
-                    </div>
-                    <div *ngIf="insertVideo">
-                        <app-preview-video [videoUrl]="videoInsertUrl"></app-preview-video>
+                        <div *ngIf="insertVideo">
+                            <app-preview-video [videoUrl]="videoInsertUrl"></app-preview-video>
+                        </div>
                     </div>
                 </div>
             </div>

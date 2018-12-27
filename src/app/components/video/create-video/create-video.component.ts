@@ -27,7 +27,6 @@ export class CreateVideoComponent implements OnInit, OnChanges {
     idVideoInsert: number;
     contentVideo: string;
     thumbsVideo: any;
-    listCategoryByUser: any;
     constructor(
         private formBuilder: FormBuilder,
         private videoService: VideoService,
@@ -54,11 +53,12 @@ export class CreateVideoComponent implements OnInit, OnChanges {
             content: [null, [Validators.required]],
             seo_title: '',
             seo_keywords: '',
-            seo_description: ''
+            seo_description: '',
+            highlight: ''
         });
-        this.listCategoryByUser = this.categoryService.getVideoCategoryByUser();
-        console.log( this.listCategoryByUser);
-        this.CategoryData = this.listCategoryByUser;
+        this.categoryService.getVideoCategoryByUser().then(category => {
+            this.CategoryData = category;
+        });
         this.currentValue = null;
     }
     valueChanged($evt) {

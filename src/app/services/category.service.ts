@@ -11,13 +11,12 @@ export class CategoryService {
     }
 
     getVideoCategoryByUser() {
-        return this.httpClient.get(`${environment.api_url}` + this.apiGetVideoCategory);
-        /*return this.httpClient.get(`${environment.api_url}` + this.apiGetVideoCategory)
+        return this.httpClient.get(`${environment.api_url}` + this.apiGetVideoCategory)
             .toPromise()
             .then((response) => {
                 return response ;
             })
-            .catch(this.handleError);*/
+            .catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {

@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {VideoService} from '../../../services/video.service';
 import {NgProgress} from 'ngx-progressbar';
@@ -7,6 +7,9 @@ import {VideoModel} from '../../../model/video.model';
 import {environment} from '../../../../environments/environment.prod';
 import {PlayerService} from '../../../services/player.service';
 import {CategoryService} from '../../../services/category.service';
+import {Select2OptionData} from 'ng2-select2';
+import {HttpErrorResponse} from '@angular/common/http';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-detail-video',
@@ -17,6 +20,7 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
 
     @ViewChildren('previewDetail') previewDetail: QueryList<ElementRef>;
     video = {
+        id: '',
         title: '',
         description: '',
         publish_at: '',
@@ -28,18 +32,27 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
         seo_title: '',
         seo_keywords: '',
         seo_description: '',
-        content: ''
+        content: '',
+        thumbnails: '',
+        status: ''
     };
 
     f: FormGroup;
     environment: any;
+    public CategoryData: Array<Select2OptionData>;
+    currentValue: any;
+    category: any;
+    thumbsVideo: any;
+    role: string;
     constructor(
         private route: ActivatedRoute,
         private formBuilder: FormBuilder,
         private videoService: VideoService,
         public progressService: NgProgress,
         public playerService: PlayerService,
-        public categoryService: CategoryService
+        public categoryService: CategoryService,
+        public authService: AuthService,
+        private routerService: Router,
     ) {
         this.environment = environment;
     }
@@ -47,21 +60,26 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
     ngOnInit() {
         const __this = this;
         this.f = this.formBuilder.group({
+            id: '',
             title: [null, Validators.required],
             description: [null, [Validators.required]],
             publish_at: [null, null],
             sub_category: [null, null],
-            thumbnails : [[Validators.required]],
             tags: [null, null],
             source: [null, null],
             content: [[Validators.required]],
             highlight: [null, null],
             seo_title: '',
             seo_keywords: '',
-            seo_description: ''
+            seo_description: '',
         });
+        this.categoryService.getVideoCategoryByUser().then(category => {
+            this.CategoryData = category;
+        });
+        this.role = this.authService.getRoleUser();
         this.progressService.start();
         this.videoService.getDetailVideoById(this.route.snapshot.paramMap.get('id')).then(video => {
+            __this.video.id = video.id;
             __this.video.title = video.title;
             __this.video.description = video.description;
             __this.video.publish_at = video.element.publish_at;
@@ -74,6 +92,8 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
             __this.video.seo_description = video.seo.seo_description;
             __this.video.seo_keywords = video.seo.seo_keywords;
             __this.video.content = video.content.content;
+            __this.video.thumbnails = video.thumbnails;
+            __this.video.status = video.status;
         });
         this.progressService.done();
     }
@@ -83,9 +103,30 @@ export class DetailVideoComponent implements OnInit, OnDestroy {
 
     eventReceiveVideoInsert($event) {
         this.video.content = $event.path;
+        this.thumbsVideo = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));
     }
 
+    valueChanged($evt) {
+        this.category = $evt.value;
+    }
     onSubmitSaveVideo() {
+        this.f.value.category_id = this.category;
+        this.videoService.update(this.f.value).subscribe(res => {
+            this.f.reset();
+            this.routerService.navigate(['DefaultV1/Video/Draft']);
+        }, (errorRes: HttpErrorResponse) => {
+            if (errorRes.status === 401) {
+                this.progressService.done();
+            }
+        });
+    }
 
+    onSubmitVideoToEditor() {
+        const video = {
+            id: this.f.value.id
+        }
+        this.videoService.changeVideoToEditor(video).then( res => {
+            console.log(res);
+        });
     }
 }
